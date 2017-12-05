@@ -22,9 +22,9 @@ This command will allow you to search matching code fragments for a given search
 
 *Query Parameters*
 - A search query string is required
-- An organization (like [`github`](https://github.com/github) or owner name (like [`jaebradley`](https://github.com/jaebradley) is optional
+- An organization (like [`github`](https://github.com/github) or owner name (like [`jaebradley`](https://github.com/jaebradley) is optional)
 - A repository name is also optional. If a `None` organization value is provided, the repository name will not be applied to the search
-- An optional language value (like `Javascript`
+- An optional language value (like `Javascript`)
 
 There will be a selection of matching code fragments that are returned - these code fragments are searchable. When a code fragment is selected with return key down, the file associated with that code fragment will be opened in your default browser.
 
@@ -34,6 +34,9 @@ Unfortunately, [`inquirer.js`](https://github.com/SBoudrias/Inquirer.js/) doesn'
 
 *Search for instances of `jaebradley` across GitHub in Javascript files*
 ![alt-text](https://media.giphy.com/media/xT0xexoD8IdbBujICQ/giphy.gif)
+
+*Search for instances of `jaebradley` in the `jaebradley/textstyler` repository across Javascript files
+![alt-text](https://media.giphy.com/media/xT0xeJqrVg7kIuD15u/giphy.gif)
 
 
 Other search functionality (like searching issues or pull requests are forthcoming).
