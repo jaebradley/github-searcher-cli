@@ -6,8 +6,13 @@ import CodeSearchOptionsSelector from '../services/CodeSearchOptionsSelector';
 import SearchService from '../services/SearchService';
 import MatchResultsParser from '../services/MatchResultsParser';
 import MatchingFilesSelector from '../services/MatchingFilesSelector';
+import GitHubCredentialSaver from '../services/GitHubCredentialSaver';
 
 async function executeCodeCommand() {
+  if (!GitHubCredentialSaver.hasCredential()) {
+    GitHubCredentialSaver.save();
+  }
+
   const searchService = new SearchService();
   const optionsService = new CodeSearchOptionsSelector();
   const options = await optionsService.selectSearchOptions();
