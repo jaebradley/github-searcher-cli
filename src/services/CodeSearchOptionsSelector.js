@@ -8,13 +8,13 @@ import SearchService from '../services/SearchService';
 
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
 
-class CodeSearchOptions {
+class CodeSearchOptionsSelector {
   constructor() {
     this.searchService = new SearchService();
     this.repositoryNames = null;
   }
 
-  async getOptions() {
+  async selectSearchOptions() {
     const {
       queryString,
       organizationName,
@@ -41,15 +41,16 @@ class CodeSearchOptions {
         name: 'repositoryName',
         message: 'Input optional repository name',
         type: 'autocomplete',
-        source: (answersSoFar, input) => {
-          return this.searchService
+        source: (answersSoFar, input) => (
+          this.searchService
             .searchRepositories(answersSoFar.organizationName, input || '')
             .then(result => result.data.items.map(repository => repository.name))
             .then((repositoryNames) => {
-              this.repositoryNames = repositoryNames;
+              this.repositoryNames = ['None'];
+              this.repositoryNames = this.repositoryNames.concat(repositoryNames);
               return this.getMatchingRepositoryNames(input || '');
-            });
-        },
+            })
+        ),
       },
       {
         name: 'language',
@@ -67,4 +68,4 @@ class CodeSearchOptions {
   }
 }
 
-export default CodeSearchOptions;
+export default CodeSearchOptionsSelector;

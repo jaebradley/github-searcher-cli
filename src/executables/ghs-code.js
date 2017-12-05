@@ -2,23 +2,23 @@
 
 /* eslint-disable no-console */
 
-import CodeSearchOptions from '../services/CodeSearchOptions';
+import CodeSearchOptionsSelector from '../services/CodeSearchOptionsSelector';
 import SearchService from '../services/SearchService';
 import MatchResultsParser from '../services/MatchResultsParser';
-import MatchingFilesOutputter from '../services/MatchingFilesOutputter';
+import MatchingFilesSelector from '../services/MatchingFilesSelector';
 
 async function executeCodeCommand() {
   const searchService = new SearchService();
-  const optionsService = new CodeSearchOptions();
-  const options = await optionsService.getOptions();
+  const optionsService = new CodeSearchOptionsSelector();
+  const options = await optionsService.selectSearchOptions();
   const results = await searchService.searchCode(options);
   const matches = MatchResultsParser.parse(results);
-  const outputter = new MatchingFilesOutputter();
-  await outputter.getChoice(matches);
+  const filesSelector = new MatchingFilesSelector();
+  await filesSelector.selectMatchingFile(matches);
 }
 
 try {
   executeCodeCommand();
 } catch (e) {
-  console.error(e);
+  console.error(`Rut ro! Unexpected error: ${e}`);
 }

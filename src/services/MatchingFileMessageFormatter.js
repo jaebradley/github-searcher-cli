@@ -10,7 +10,9 @@ ${file.matchingFragments.map(fragment => `${colors.underline(colors.white('Match
   static formatFragment(fragment) {
     const styledRanges = fragment.matchingRanges
       .map(range => new StyledRange(range, MatchingFileMessageFormatter.getStyle()));
-    return TextStyler.style(fragment.text, styledRanges);
+    const styledText = TextStyler.style(fragment.text, styledRanges);
+    // This is temporary and will be removed when multiline support is added to inquirer.js
+    return styledText.replace(/\r?\n?/g, '');
   }
 
   static getStyle() {

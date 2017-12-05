@@ -7,5 +7,5 @@ import GitHubCredentialSaver from '../services/GitHubCredentialSaver';
 try {
   GitHubCredentialSaver.save();
 } catch (e) {
-  console.error(e);
+  console.error(`Rut ro! Unexpected error: ${e}`);
 }

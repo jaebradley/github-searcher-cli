@@ -48,7 +48,7 @@ class SearchService {
   static generateQueryString(options) {
     let queryString = '';
     if (options.organizationName) {
-      if (options.repositoryName) {
+      if (options.repositoryName && options.repositoryName !== 'None') {
         queryString += `repo:${options.organizationName}/${options.repositoryName}`;
       } else {
         queryString += `org:${options.organizationName}`;
