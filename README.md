@@ -4,6 +4,8 @@
 
 # GitHub Searcher CLI
 
+![alt-text](https://imgur.com/ddiCSwe.png)
+
 ## Introduction
 GitHub has some great search functionality (especially for [code searches](https://github.com/search?utf8=%E2%9C%93&q=&type=Code)). That being said, it can be annoying to look for code samples in various repositories via the web search UI (especially when switching from doing work in the Terminal). Thus, this command line tool hopes to replace some of the functionality that the GitHub search service provides.
 
