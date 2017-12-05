@@ -26,13 +26,14 @@ This command will allow you to search matching code fragments for a given search
 - A repository name is also optional. If a `None` organization value is provided, the repository name will not be applied to the search
 - An optional language value (like `Javascript`
 
-There will be a selection of matching code fragments that are returned - these code fragments are searchable.
+There will be a selection of matching code fragments that are returned - these code fragments are searchable. When a code fragment is selected with return key down, the file associated with that code fragment will be opened in your default browser.
 
 Unfortunately, [`inquirer.js`](https://github.com/SBoudrias/Inquirer.js/) doesn't deal with multiline list choices very well (especially when it comes to arrow key navigation). This is a known issue that [this PR](https://github.com/SBoudrias/Inquirer.js/pull/389) hopes to tackle.
 
 **Example**
 
-*Search for instances of `jaebradley` across GitHub in Javascript files
-![alt-text](https://media.giphy.com/media/3oxHQveEglDxcfZutW/giphy.gif)
+*Search for instances of `jaebradley` across GitHub in Javascript files*
+![alt-text](https://media.giphy.com/media/xT0xexoD8IdbBujICQ/giphy.gif)
+
 
 Other search functionality (like searching issues or pull requests are forthcoming).
