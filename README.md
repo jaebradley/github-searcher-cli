@@ -35,7 +35,7 @@ Unfortunately, [`inquirer.js`](https://github.com/SBoudrias/Inquirer.js/) doesn'
 *Search for instances of `jaebradley` across GitHub in Javascript files*
 ![alt-text](https://media.giphy.com/media/xT0xexoD8IdbBujICQ/giphy.gif)
 
-*Search for instances of `jaebradley` in the `jaebradley/textstyler` repository across Javascript files
+*Search for instances of `jaebradley` in the `jaebradley/textstyler` repository across Javascript files*
 ![alt-text](https://media.giphy.com/media/xT0xeJqrVg7kIuD15u/giphy.gif)
 
 
