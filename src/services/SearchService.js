@@ -1,4 +1,4 @@
-import GitHubClient from 'github';
+import GitHubClient from 'github'; // eslint-disable-line import/no-extraneous-dependencies
 
 import GitHubCredentialSaver from './GitHubCredentialSaver';
 

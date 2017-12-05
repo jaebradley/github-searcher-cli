@@ -467,5 +467,5 @@ const LANGUAGES = Object.freeze([
 ]);
 
 export {
-  LANGUAGES,
+  LANGUAGES, // eslint-disable-line import/prefer-default-export
 };
