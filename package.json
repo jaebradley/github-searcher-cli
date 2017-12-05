@@ -21,9 +21,8 @@
     "url": "https://github.com/jaebradley/github-searcher-cli.git"
   },
   "keywords": [
-    "trump",
-    "cli",
-    "node"
+    "github",
+    "cli"
   ],
   "author": "jae.b.bradley@gmail.com",
   "license": "MIT",
