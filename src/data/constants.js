@@ -466,6 +466,9 @@ const LANGUAGES = Object.freeze([
   'Vim script',
 ]);
 
+const TWO_FACTOR_AUTHENTICATION_CODE_REQUIRED_ERROR_MESSAGE = 'Must specify two-factor authentication OTP code.';
+
 export {
-  LANGUAGES, // eslint-disable-line import/prefer-default-export
+  LANGUAGES,
+  TWO_FACTOR_AUTHENTICATION_CODE_REQUIRED_ERROR_MESSAGE,
 };
