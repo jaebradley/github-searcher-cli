@@ -2,10 +2,6 @@
 
 /* eslint-disable no-console */
 
-import GitHubCredentialSaver from '../services/GitHubCredentialSaver';
+import SetupCommandService from '../services/SetupCommandService';
 
-try {
-  GitHubCredentialSaver.save();
-} catch (e) {
-  console.error(`Rut ro! Unexpected error: ${e}`);
-}
+SetupCommandService.execute();
