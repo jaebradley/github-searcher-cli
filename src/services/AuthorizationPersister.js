@@ -22,7 +22,8 @@ class AuthorizationPersister {
     const currentAuthorizationId = await GitHubDataStorer.getAuthorizationId();
 
     if (currentAuthorizationId) {
-      await this.authorizationService.deleteWithTwoFactorAuthentication(currentAuthorizationId, twoFactorAuthenticationCode);
+      await this.authorizationService
+        .deleteWithTwoFactorAuthentication(currentAuthorizationId, twoFactorAuthenticationCode);
     }
   }
 
