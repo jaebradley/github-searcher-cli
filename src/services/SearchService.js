@@ -1,6 +1,6 @@
 import GitHubClient from 'github'; // eslint-disable-line import/no-extraneous-dependencies
 
-import GitHubCredentialSaver from './GitHubCredentialSaver';
+import GitHubDataStorer from './GitHubDataStorer';
 
 class SearchService {
   constructor() {
@@ -15,7 +15,7 @@ class SearchService {
   async searchRepositories(organizationName, repoNameContains) {
     this.client.authenticate({
       type: 'token',
-      token: await GitHubCredentialSaver.getCredential(),
+      token: await GitHubDataStorer.getAuthorizationToken(),
     });
     return new Promise((resolve, reject) => {
       this.client.search.repos({ q: `org:${organizationName} ${repoNameContains}` }, (error, response) => {
@@ -30,7 +30,7 @@ class SearchService {
   async searchCode(options) {
     this.client.authenticate({
       type: 'token',
-      token: await GitHubCredentialSaver.getCredential(),
+      token: await GitHubDataStorer.getAuthorizationToken(),
     });
     return new Promise((resolve, reject) => {
       this.client.search.code(
