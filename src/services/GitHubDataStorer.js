@@ -48,19 +48,23 @@ class GitHubDataStorer {
   }
 
   static async hasAuthorizationToken() {
-    return !!GitHubDataStorer.getAuthorizationToken();
+    const authorizationToken = await GitHubDataStorer.getAuthorizationToken();
+    return !!authorizationToken;
   }
 
   static async hasUsername() {
-    return !!GitHubDataStorer.getUsername();
+    const username = await GitHubDataStorer.getUsername();
+    return !!username;
   }
 
   static async hasPassword() {
-    return !!GitHubDataStorer.getPassword();
+    const password = await GitHubDataStorer.getPassword();
+    return !!password;
   }
 
   static async hasAuthorizationId() {
-    return !!GitHubDataStorer.getAuthorizationId();
+    const authorizationId = await GitHubDataStorer.getAuthorizationId();
+    return !!authorizationId;
   }
 }
 
