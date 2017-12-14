@@ -8,4 +8,5 @@ program.version(pkg.version)
   .description('GitHub search from the command line')
   .command('setup', 'add GitHub OAuth Token')
   .command('code', 'search code in GitHub')
+  .command('pr', 'search Pull Requests in GitHub')
   .parse(process.argv);
