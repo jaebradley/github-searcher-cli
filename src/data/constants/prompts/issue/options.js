@@ -1,15 +1,15 @@
 const NONE = 'None';
-const OPEN_ISSUES_THAT_USER_HAS_AUTHORED = "Open PRs you've authored";
-const OPEN_ISSUES_THAT_USER_HAS_COMMENTED_ON = "Open PRs you've commented on";
-const OPEN_ISSUES_THAT_USER_HAS_BEEN_ASSIGNED_TO = "Open PRs you've been assigned to";
-const OPEN_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON = "Open PRs you've been mentioned on";
-const OPEN_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH = "Open PRs you've been involved with";
+const OPEN_ISSUES_THAT_USER_HAS_AUTHORED = "Open issues you've authored";
+const OPEN_ISSUES_THAT_USER_HAS_COMMENTED_ON = "Open issues you've commented on";
+const OPEN_ISSUES_THAT_USER_HAS_BEEN_ASSIGNED_TO = "Open issues you've been assigned to";
+const OPEN_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON = "Open issues you've been mentioned on";
+const OPEN_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH = "Open issues you've been involved with";
 
-const CLOSED_ISSUES_THAT_USE_HAS_AUTHORED = "Closed PRs you've authored";
-const CLOSED_ISSUES_THAT_USER_HAS_COMMENTED_ON = "Closed PRs you've commented on";
-const CLOSED_ISSUES_THAT_USER_HAS_BEEN_ASSIGNED_TO = "Closed PRs you've been assigned to";
-const CLOSED_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON = "Closed PRs you've been mentioned on";
-const CLOSED_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH = "Closed PRs you've been involved with";
+const CLOSED_ISSUES_THAT_USE_HAS_AUTHORED = "Closed issues you've authored";
+const CLOSED_ISSUES_THAT_USER_HAS_COMMENTED_ON = "Closed issues you've commented on";
+const CLOSED_ISSUES_THAT_USER_HAS_BEEN_ASSIGNED_TO = "Closed issues you've been assigned to";
+const CLOSED_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON = "Closed issues you've been mentioned on";
+const CLOSED_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH = "Closed issues you've been involved with";
 
 export {
   NONE,

@@ -11,7 +11,10 @@ class IssueFormatter {
       state,
       comments,
       updated_at,
+      assignee,
     } = issue;
+
+    console.log(assignee);
 
     const repositoryName = IssueFormatter.parseRepositoryName(repository_url);
     const formattedTitle = IssueFormatter.formatTitle(title);
@@ -21,6 +24,7 @@ class IssueFormatter {
     const formattedCommentCount = IssueFormatter.formatCommentCount(comments);
     const formattedLabels = IssueFormatter.formatLabels(labels);
     const formattedUpdatedAt = IssueFormatter.formatUpdatedAt(updated_at);
+    const formattedAssignee = IssueFormatter.formatAssignee(assignee);
 
     let formattedIssue = '';
 
@@ -30,8 +34,18 @@ class IssueFormatter {
 
     formattedIssue += `${formattedTitle} (${formattedIdentifier}) | ${formattedCommentCount} | ${formattedUpdatedAt}`;
 
+    let nextLine = '';
+
+    if (formattedAssignee.length > 0) {
+      nextLine += formattedAssignee;
+    }
+
     if (formattedLabels.length > 0) {
-      formattedIssue += `\n${formattedLabels}`;
+      nextLine += formattedLabels;
+    }
+
+    if (nextLine.length > 0) {
+      formattedIssue += `\n  ${nextLine}`;
     }
 
     return formattedIssue;
@@ -107,6 +121,14 @@ class IssueFormatter {
   static formatLabel(label) {
     const { name, color } = label;
     return `${chalk.hex(`#${color}`).bold(`#${name}`)}`;
+  }
+
+  static formatAssignee(assignee) {
+    if (!assignee) {
+      return '';
+    }
+
+    return `📍 ${chalk.green.italic.bold(`@${assignee.login}`)}  `;
   }
 
   static parseRepositoryName(repositoryUrl) {
