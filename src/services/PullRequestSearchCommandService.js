@@ -11,7 +11,7 @@ class PullRequestSearchCommandService {
     let accessToken = await GitHubDataStorer.getAuthorizationToken();
     let username = await GitHubDataStorer.getUsername();
 
-    if (accessToken || username) {
+    if (!accessToken || !username) {
       await SetupCommandService.execute();
       accessToken = await GitHubDataStorer.getAuthorizationToken();
       username = await GitHubDataStorer.getUsername();
