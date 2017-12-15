@@ -9,4 +9,5 @@ program.version(pkg.version)
   .command('setup', 'add GitHub OAuth Token')
   .command('code', 'search code in GitHub')
   .command('pr', 'search Pull Requests in GitHub')
+  .command('issue', 'search Issues in GitHub')
   .parse(process.argv);
