@@ -45,11 +45,11 @@ class SetupCommandService {
   }
 
   static getSuccessMessage() {
-    return '✅ Credentials Were Successfully Saved';
+    return '✅  Credentials Were Successfully Saved';
   }
 
   static getFailureMessage() {
-    return '❌ Authentication Failed';
+    return '❌  Authentication Failed';
   }
 }
 
