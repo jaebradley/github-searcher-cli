@@ -1,7 +1,7 @@
 import { Range } from 'textstyler';
 
-import MatchingFile from '../data/MatchingFile';
-import MatchingFragment from '../data/MatchingFragment';
+import MatchingFile from '../../data/MatchingFile';
+import MatchingFragment from '../../data/MatchingFragment';
 
 class MatchResultsParser {
   static parse(results) {

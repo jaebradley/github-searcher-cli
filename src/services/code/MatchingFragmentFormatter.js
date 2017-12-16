@@ -1,5 +1,11 @@
 import colors from 'colors';
-import { TextStyler, StyledRange, TextStyle, TextColor, TextFormat } from 'textstyler';
+import {
+  TextStyler,
+  StyledRange,
+  TextStyle,
+  TextColor,
+  TextFormat,
+} from 'textstyler';
 
 class MatchingFragmentFormatter {
   static format(filePath, fullRepositoryName, matchingFragment) {

@@ -14,8 +14,6 @@ class IssueFormatter {
       assignee,
     } = issue;
 
-    console.log(assignee);
-
     const repositoryName = IssueFormatter.parseRepositoryName(repository_url);
     const formattedTitle = IssueFormatter.formatTitle(title);
     const formattedIdentifier = IssueFormatter
