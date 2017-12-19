@@ -1,13 +1,13 @@
-const NONE = 'NONE';
-const HAS_NOT_BEEN_REVIEWED = 'HAS NOT BEEN REVIEWED';
-const REQUIRED = 'REQUIRED';
-const APPROVED = 'APPROVED';
-const CHANGES_REQUESTED = 'CHANGES REQUESTED';
+const None = 'None';
+const HasNotBeenReviewed = 'Has Not Been Reviewed';
+const Required = 'Required';
+const Approved = 'Approved';
+const ChangesRequested = 'Changes Requested';
 
 export {
-  NONE,
-  HAS_NOT_BEEN_REVIEWED,
-  REQUIRED,
-  APPROVED,
-  CHANGES_REQUESTED,
+  None,
+  HasNotBeenReviewed,
+  Required,
+  Approved,
+  ChangesRequested,
 };
