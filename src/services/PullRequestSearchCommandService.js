@@ -4,22 +4,56 @@ import IssueQueryCreator from './IssueQueryCreator';
 import PullRequestSearchService from './PullRequestSearchService';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
 import SetupCommandService from './SetupCommandService';
+import SearchParametersPrompter from './SearchParametersPrompter';
+import UserActionParametersPrompter from './UserActionParametersPrompter';
+import IssueStateParametersPrompt from './IssueStateParametersPrompt';
+import IssueType from '../data/constants/IssueType';
+import { NONE } from '../data/constants/prompts/pullRequest/options';
+import RepositorySearcher from './RepositorySearcher';
+import ReviewStatusOptionPrompter from './ReviewStatusOptionPrompter';
 
 
 class PullRequestSearchCommandService {
   static async execute() {
-    let accessToken = await GitHubDataStorer.getAuthorizationToken();
+    let authorizationToken = await GitHubDataStorer.getAuthorizationToken();
     let username = await GitHubDataStorer.getUsername();
 
-    if (!accessToken || !username) {
+    if (!authorizationToken || !username) {
       await SetupCommandService.execute();
-      accessToken = await GitHubDataStorer.getAuthorizationToken();
+      authorizationToken = await GitHubDataStorer.getAuthorizationToken();
       username = await GitHubDataStorer.getUsername();
     }
 
+    let issueQuery;
     const { quickOption } = await PullRequestSearchPrompter.promptSearchOptions();
-    const issueQuery = IssueQueryCreator.createFromPromptOption(quickOption, username);
-    const searchService = new PullRequestSearchService(accessToken);
+    if (quickOption === NONE) {
+      const repositorySearcher = new RepositorySearcher(authorizationToken);
+      const searchParametersPrompter = new SearchParametersPrompter(repositorySearcher);
+      const {
+        queryString,
+        organizationName,
+        repositoryName,
+        language,
+      } = await searchParametersPrompter.promptSearchParameters();
+      const { queryUsername, actions } = await UserActionParametersPrompter.prompt();
+      const { state } = await IssueStateParametersPrompt.prompt();
+      const { reviewStatus } = await ReviewStatusOptionPrompter.prompt();
+      issueQuery = IssueQueryCreator.create(
+        queryString,
+        IssueType.PULL_REQUEST,
+        state,
+        queryUsername,
+        actions,
+        organizationName,
+        repositoryName,
+        language,
+        reviewStatus,
+      );
+    } else {
+      issueQuery = IssueQueryCreator.createFromPromptOption(quickOption, username);
+    }
+
+    const searchService = new PullRequestSearchService(authorizationToken);
     const response = await searchService.search(issueQuery);
     const searchResultsSelector = new PullRequestSearchResultSelector();
     await searchResultsSelector.select(response.data.items);
