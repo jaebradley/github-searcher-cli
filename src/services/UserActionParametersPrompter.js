@@ -5,7 +5,7 @@ import {
   ASSIGNED,
   MENTIONED,
   INVOLVED,
-} from '../data/constants/prompts/pullRequest/options';
+} from '../data/constants/prompts/pullRequest/Options';
 
 
 class UserActionParametersPrompter {

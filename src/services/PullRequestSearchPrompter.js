@@ -14,7 +14,7 @@ import {
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_ASSIGNED_TO,
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_MENTIONED_ON,
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_INVOLVED_WITH,
-} from '../data/constants/prompts/pullRequest/options';
+} from '../data/constants/prompts/pullRequest/Options';
 
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
 

@@ -8,7 +8,7 @@ import SearchParametersPrompter from './SearchParametersPrompter';
 import UserActionParametersPrompter from './UserActionParametersPrompter';
 import IssueStateParametersPrompt from './IssueStateParametersPrompt';
 import IssueType from '../data/constants/IssueType';
-import { NONE } from '../data/constants/prompts/pullRequest/options';
+import { NONE } from '../data/constants/prompts/pullRequest/Options';
 import RepositorySearcher from './RepositorySearcher';
 import ReviewStatusOptionPrompter from './ReviewStatusOptionPrompter';
 

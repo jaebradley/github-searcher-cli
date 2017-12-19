@@ -19,7 +19,7 @@ import {
   ASSIGNED,
   MENTIONED,
   INVOLVED,
-} from '../data/constants/prompts/pullRequest/options';
+} from '../data/constants/prompts/pullRequest/Options';
 
 import {
   OPEN_ISSUES_THAT_USER_HAS_AUTHORED,
