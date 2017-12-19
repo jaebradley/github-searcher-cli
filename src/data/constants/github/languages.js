@@ -1,4 +1,4 @@
-const LANGUAGES = Object.freeze([
+const Languages = Object.freeze([
   'None',
   '1C Enterprise',
   'ABAP',
@@ -466,4 +466,4 @@ const LANGUAGES = Object.freeze([
   'Vim script',
 ]);
 
-export default LANGUAGES;
+export default Languages;

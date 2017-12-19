@@ -2,7 +2,7 @@
 
 import AuthorizationPersister from './AuthorizationPersister';
 import SetupCommandPrompter from './SetupCommandPrompter';
-import { TWO_FACTOR_AUTHENTICATION_CODE_REQUIRED_ERROR_MESSAGE } from '../data/constants';
+import { TwoFactorAuthenticationRequiredErrorMessage } from '../data/constants/github/Errors';
 
 class SetupCommandService {
   static async execute() {
@@ -15,7 +15,7 @@ class SetupCommandService {
         await authorizationPersister.deleteExistingAuthorization();
       } catch (e) {
         const { message } = JSON.parse(e.message);
-        if (message !== TWO_FACTOR_AUTHENTICATION_CODE_REQUIRED_ERROR_MESSAGE) {
+        if (message !== TwoFactorAuthenticationRequiredErrorMessage) {
           throw e;
         }
 
@@ -30,7 +30,7 @@ class SetupCommandService {
         console.log(SetupCommandService.getSuccessMessage());
       } catch (e) {
         const { message } = JSON.parse(e.message);
-        if (message !== TWO_FACTOR_AUTHENTICATION_CODE_REQUIRED_ERROR_MESSAGE) {
+        if (message !== TwoFactorAuthenticationRequiredErrorMessage) {
           throw e;
         } else {
           const { twoFactorAuthenticationCode } = await SetupCommandPrompter
