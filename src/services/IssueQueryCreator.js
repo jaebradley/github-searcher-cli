@@ -14,6 +14,11 @@ import {
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_ASSIGNED_TO,
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_MENTIONED_ON,
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_INVOLVED_WITH,
+  AUTHORED,
+  COMMENTED,
+  ASSIGNED,
+  MENTIONED,
+  INVOLVED,
 } from '../data/constants/prompts/pullRequest/options';
 
 import {
@@ -31,6 +36,51 @@ import {
 
 
 class IssueQueryCreator {
+  static create(
+    queryString,
+    type,
+    state,
+    username,
+    actions,
+    organizationName,
+    repositoryName,
+    language,
+    reviewStatus,
+  ) {
+    const baseQuery = {};
+    baseQuery.queryString = queryString;
+    baseQuery.type = type;
+    baseQuery.state = state;
+    baseQuery.organizationName = organizationName;
+    baseQuery.repositoryName = repositoryName;
+    baseQuery.language = language;
+    baseQuery.reviewStatus = reviewStatus;
+
+    if (actions) {
+      if (actions.includes(AUTHORED)) {
+        baseQuery.author = username;
+      }
+
+      if (actions.includes(COMMENTED)) {
+        baseQuery.commenter = username;
+      }
+
+      if (actions.includes(MENTIONED)) {
+        baseQuery.mentions = username;
+      }
+
+      if (actions.includes(INVOLVED)) {
+        baseQuery.involves = username;
+      }
+
+      if (actions.includes(ASSIGNED)) {
+        baseQuery.assignee = username;
+      }
+    }
+
+    return new IssueQuery(baseQuery);
+  }
+
   static createFromPromptOption(option, username) {
     switch (option) {
       case NONE:

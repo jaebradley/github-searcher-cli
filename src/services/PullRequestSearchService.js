@@ -2,6 +2,12 @@ import GitHub from 'github';
 
 import IssueType from '../data/constants/IssueType';
 import State from '../data/constants/State';
+import {
+  HAS_NOT_BEEN_REVIEWED,
+  REQUIRED,
+  APPROVED,
+  CHANGES_REQUESTED,
+} from '../data/constants/prompts/pullRequest/ReviewStatus';
 
 const formattedTypes = {};
 formattedTypes[IssueType.PULL_REQUEST] = 'pr';
@@ -10,6 +16,12 @@ formattedTypes[IssueType.ISSUE] = 'issue';
 const formattedStates = {};
 formattedStates[State.OPEN] = 'open';
 formattedStates[State.CLOSED] = 'closed';
+
+const reviewStatuses = {};
+reviewStatuses[HAS_NOT_BEEN_REVIEWED] = 'none';
+reviewStatuses[REQUIRED] = 'required';
+reviewStatuses[APPROVED] = 'approved';
+reviewStatuses[CHANGES_REQUESTED] = 'changes_requested';
 
 class PullRequestSearchService {
   constructor(accessToken) {
@@ -29,17 +41,41 @@ class PullRequestSearchService {
     const {
       type,
       state,
+      reviewStatus,
       author,
       commenter,
       assignee,
       mentions,
       involves,
+      organizationName,
+      repositoryName,
+      language,
+      queryString,
     } = searchTerms;
 
     const formattedType = formattedTypes[type];
     const formattedState = formattedStates[state];
 
     let formattedQuery = '';
+
+    if (queryString) {
+      formattedQuery += `${queryString} `;
+    }
+
+    let repositoryQuery = '';
+    if (organizationName) {
+      if (repositoryName && repositoryName !== 'None') {
+        repositoryQuery += `repo:${organizationName}/${repositoryName} `;
+      } else {
+        repositoryQuery += `org:${organizationName} `;
+      }
+    }
+
+    formattedQuery += `${repositoryQuery}`;
+
+    if (language && language !== 'None') {
+      formattedQuery += `language:${language} `;
+    }
 
     if (type) {
       formattedQuery += `type:${formattedType} `;
@@ -49,24 +85,29 @@ class PullRequestSearchService {
       formattedQuery += `state:${formattedState} `;
     }
 
+    const reviewStatusValue = reviewStatuses[reviewStatus];
+    if (reviewStatusValue) {
+      formattedQuery += `review:${reviewStatusValue} `;
+    }
+
     if (author) {
-      formattedQuery += `author:${author}`;
+      formattedQuery += `author:${author} `;
     }
 
     if (commenter) {
-      formattedQuery += `commenter:${commenter}`;
+      formattedQuery += `commenter:${commenter} `;
     }
 
     if (assignee) {
-      formattedQuery += `assignee:${assignee}`;
+      formattedQuery += `assignee:${assignee} `;
     }
 
     if (mentions) {
-      formattedQuery += `mentions:${mentions}`;
+      formattedQuery += `mentions:${mentions} `;
     }
 
     if (involves) {
-      formattedQuery += `involves:${involves}`;
+      formattedQuery += `involves:${involves} `;
     }
 
     return formattedQuery;

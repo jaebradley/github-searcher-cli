@@ -3,6 +3,7 @@ import InquirerAutocompletePrompt from 'inquirer-autocomplete-prompt';
 import fuzzy from 'fuzzy';
 
 import {
+  NONE,
   OPEN_PULL_REQUESTS_THAT_USER_HAS_AUTHORED,
   OPEN_PULL_REQUESTS_THAT_USER_HAS_COMMENTED_ON,
   OPEN_PULL_REQUESTS_THAT_USER_HAS_BEEN_ASSIGNED_TO,
@@ -18,6 +19,7 @@ import {
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
 
 const OPTIONS = [
+  NONE,
   OPEN_PULL_REQUESTS_THAT_USER_HAS_AUTHORED,
   OPEN_PULL_REQUESTS_THAT_USER_HAS_COMMENTED_ON,
   OPEN_PULL_REQUESTS_THAT_USER_HAS_BEEN_ASSIGNED_TO,
