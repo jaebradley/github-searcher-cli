@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import State from '../data/constants/State';
+import { Open, Closed } from '../data/constants/github/issue/State';
 
 class IssueStateParametersPrompt {
   static async prompt() {
@@ -8,10 +8,7 @@ class IssueStateParametersPrompt {
         type: 'list',
         name: 'state',
         message: 'Filter by issue state',
-        choices: [
-          State.OPEN,
-          State.CLOSED,
-        ],
+        choices: [Open, Closed],
       },
     ]);
   }
