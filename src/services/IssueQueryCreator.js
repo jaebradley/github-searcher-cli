@@ -14,11 +14,6 @@ import {
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_ASSIGNED_TO,
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_MENTIONED_ON,
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_INVOLVED_WITH,
-  AUTHORED,
-  COMMENTED,
-  ASSIGNED,
-  MENTIONED,
-  INVOLVED,
 } from '../data/constants/prompts/pullRequest/Options';
 
 import {
@@ -33,6 +28,14 @@ import {
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON,
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH,
 } from '../data/constants/prompts/issue/Options';
+
+import {
+  Authored,
+  Commented,
+  Assigned,
+  Mentioned,
+  Involved,
+} from '../data/constants/github/issue/UserActions';
 
 
 class IssueQueryCreator {
@@ -57,23 +60,23 @@ class IssueQueryCreator {
     baseQuery.reviewStatus = reviewStatus;
 
     if (actions) {
-      if (actions.includes(AUTHORED)) {
+      if (actions.includes(Authored)) {
         baseQuery.author = username;
       }
 
-      if (actions.includes(COMMENTED)) {
+      if (actions.includes(Commented)) {
         baseQuery.commenter = username;
       }
 
-      if (actions.includes(MENTIONED)) {
+      if (actions.includes(Mentioned)) {
         baseQuery.mentions = username;
       }
 
-      if (actions.includes(INVOLVED)) {
+      if (actions.includes(Involved)) {
         baseQuery.involves = username;
       }
 
-      if (actions.includes(ASSIGNED)) {
+      if (actions.includes(Assigned)) {
         baseQuery.assignee = username;
       }
     }
