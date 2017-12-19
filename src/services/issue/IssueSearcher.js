@@ -1,11 +1,11 @@
 import GitHub from 'github';
 
-import IssueType from '../../data/constants/IssueType';
+import { Issue, PullRequest } from '../../data/constants/github/issue/Type';
 import State from '../../data/constants/State';
 
 const formattedTypes = {};
-formattedTypes[IssueType.PULL_REQUEST] = 'pr';
-formattedTypes[IssueType.ISSUE] = 'issue';
+formattedTypes[PullRequest] = 'pr';
+formattedTypes[Issue] = 'issue';
 
 const formattedStates = {};
 formattedStates[State.OPEN] = 'open';
