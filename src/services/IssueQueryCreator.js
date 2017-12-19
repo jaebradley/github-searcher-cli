@@ -32,7 +32,7 @@ import {
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_ASSIGNED_TO,
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON,
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH,
-} from '../data/constants/prompts/issue/options';
+} from '../data/constants/prompts/issue/Options';
 
 
 class IssueQueryCreator {
