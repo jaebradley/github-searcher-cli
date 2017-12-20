@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import InquirerAutocompletePrompt from 'inquirer-autocomplete-prompt';
 import fuzzy from 'fuzzy';
 
-import GitHubLanguages from '../../data/constants/github/languages';
+import GitHubLanguages from '../../data/constants/github/Languages';
 
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
 
