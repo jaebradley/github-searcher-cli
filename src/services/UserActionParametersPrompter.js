@@ -1,11 +1,11 @@
 import inquirer from 'inquirer';
 import {
-  AUTHORED,
-  COMMENTED,
-  ASSIGNED,
-  MENTIONED,
-  INVOLVED,
-} from '../data/constants/prompts/pullRequest/options';
+  Authored,
+  Commented,
+  Assigned,
+  Mentioned,
+  Involved,
+} from '../data/constants/github/issue/UserActions';
 
 
 class UserActionParametersPrompter {
@@ -22,11 +22,11 @@ class UserActionParametersPrompter {
         message: 'Filter by user actions',
         when: answersSoFar => answersSoFar.queryUsername.length > 0,
         choices: [
-          AUTHORED,
-          COMMENTED,
-          ASSIGNED,
-          MENTIONED,
-          INVOLVED,
+          Authored,
+          Commented,
+          Assigned,
+          Mentioned,
+          Involved,
         ],
       },
     ]);

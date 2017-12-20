@@ -1,27 +1,27 @@
 import GitHub from 'github';
 
-import IssueType from '../data/constants/IssueType';
-import State from '../data/constants/State';
+import { Issue, PullRequest } from '../data/constants/github/issue/Type';
+import { Open, Closed } from '../data/constants/github/issue/State';
 import {
-  HAS_NOT_BEEN_REVIEWED,
-  REQUIRED,
-  APPROVED,
-  CHANGES_REQUESTED,
+  HasNotBeenReviewed,
+  Required,
+  Approved,
+  ChangesRequested,
 } from '../data/constants/prompts/pullRequest/ReviewStatus';
 
 const formattedTypes = {};
-formattedTypes[IssueType.PULL_REQUEST] = 'pr';
-formattedTypes[IssueType.ISSUE] = 'issue';
+formattedTypes[PullRequest] = 'pr';
+formattedTypes[Issue] = 'issue';
 
 const formattedStates = {};
-formattedStates[State.OPEN] = 'open';
-formattedStates[State.CLOSED] = 'closed';
+formattedStates[Open] = 'open';
+formattedStates[Closed] = 'closed';
 
 const reviewStatuses = {};
-reviewStatuses[HAS_NOT_BEEN_REVIEWED] = 'none';
-reviewStatuses[REQUIRED] = 'required';
-reviewStatuses[APPROVED] = 'approved';
-reviewStatuses[CHANGES_REQUESTED] = 'changes_requested';
+reviewStatuses[HasNotBeenReviewed] = 'none';
+reviewStatuses[Required] = 'required';
+reviewStatuses[Approved] = 'approved';
+reviewStatuses[ChangesRequested] = 'changes_requested';
 
 class PullRequestSearchService {
   constructor(accessToken) {

@@ -1,6 +1,6 @@
 import IssueQuery from '../data/IssueQuery';
-import IssueType from '../data/constants/IssueType';
-import State from '../data/constants/State';
+import { Issue, PullRequest } from '../data/constants/github/issue/Type';
+import { Open, Closed } from '../data/constants/github/issue/State';
 
 import {
   NONE,
@@ -14,12 +14,7 @@ import {
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_ASSIGNED_TO,
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_MENTIONED_ON,
   CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_INVOLVED_WITH,
-  AUTHORED,
-  COMMENTED,
-  ASSIGNED,
-  MENTIONED,
-  INVOLVED,
-} from '../data/constants/prompts/pullRequest/options';
+} from '../data/constants/prompts/pullRequest/Options';
 
 import {
   OPEN_ISSUES_THAT_USER_HAS_AUTHORED,
@@ -32,7 +27,15 @@ import {
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_ASSIGNED_TO,
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON,
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH,
-} from '../data/constants/prompts/issue/options';
+} from '../data/constants/prompts/issue/Options';
+
+import {
+  Authored,
+  Commented,
+  Assigned,
+  Mentioned,
+  Involved,
+} from '../data/constants/github/issue/UserActions';
 
 
 class IssueQueryCreator {
@@ -57,23 +60,23 @@ class IssueQueryCreator {
     baseQuery.reviewStatus = reviewStatus;
 
     if (actions) {
-      if (actions.includes(AUTHORED)) {
+      if (actions.includes(Authored)) {
         baseQuery.author = username;
       }
 
-      if (actions.includes(COMMENTED)) {
+      if (actions.includes(Commented)) {
         baseQuery.commenter = username;
       }
 
-      if (actions.includes(MENTIONED)) {
+      if (actions.includes(Mentioned)) {
         baseQuery.mentions = username;
       }
 
-      if (actions.includes(INVOLVED)) {
+      if (actions.includes(Involved)) {
         baseQuery.involves = username;
       }
 
-      if (actions.includes(ASSIGNED)) {
+      if (actions.includes(Assigned)) {
         baseQuery.assignee = username;
       }
     }
@@ -87,123 +90,123 @@ class IssueQueryCreator {
         return new IssueQuery();
       case OPEN_PULL_REQUESTS_THAT_USER_HAS_AUTHORED:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.OPEN,
+          type: PullRequest,
+          state: Open,
           author: username,
         });
       case OPEN_PULL_REQUESTS_THAT_USER_HAS_COMMENTED_ON:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.OPEN,
+          type: PullRequest,
+          state: Open,
           commenter: username,
         });
       case OPEN_PULL_REQUESTS_THAT_USER_HAS_BEEN_ASSIGNED_TO:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.OPEN,
+          type: PullRequest,
+          state: Open,
           assignee: username,
         });
       case OPEN_PULL_REQUESTS_THAT_USER_HAS_BEEN_MENTIONED_ON:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.OPEN,
+          type: PullRequest,
+          state: Open,
           mentions: username,
         });
       case OPEN_PULL_REQUESTS_THAT_USER_HAS_BEEN_INVOLVED_WITH:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.OPEN,
+          type: PullRequest,
+          state: Open,
           involves: username,
         });
       case CLOSED_PULL_REQUESTS_THAT_USE_HAS_AUTHORED:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.CLOSED,
+          type: PullRequest,
+          state: Closed,
           author: username,
         });
       case CLOSED_PULL_REQUESTS_THAT_USER_HAS_COMMENTED_ON:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.CLOSED,
+          type: PullRequest,
+          state: Closed,
           commenter: username,
         });
       case CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_ASSIGNED_TO:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.CLOSED,
+          type: PullRequest,
+          state: Closed,
           assignee: username,
         });
       case CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_MENTIONED_ON:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.CLOSED,
+          type: PullRequest,
+          state: Closed,
           mentions: username,
         });
       case CLOSED_PULL_REQUESTS_THAT_USER_HAS_BEEN_INVOLVED_WITH:
         return new IssueQuery({
-          type: IssueType.PULL_REQUEST,
-          state: State.CLOSED,
+          type: PullRequest,
+          state: Closed,
           involves: username,
         });
 
       case OPEN_ISSUES_THAT_USER_HAS_AUTHORED:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.OPEN,
+          type: Issue,
+          state: Open,
           author: username,
         });
       case OPEN_ISSUES_THAT_USER_HAS_COMMENTED_ON:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.OPEN,
+          type: Issue,
+          state: Open,
           commenter: username,
         });
       case OPEN_ISSUES_THAT_USER_HAS_BEEN_ASSIGNED_TO:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.OPEN,
+          type: Issue,
+          state: Open,
           assignee: username,
         });
       case OPEN_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.OPEN,
+          type: Issue,
+          state: Open,
           mentions: username,
         });
       case OPEN_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.OPEN,
+          type: Issue,
+          state: Open,
           involves: username,
         });
       case CLOSED_ISSUES_THAT_USE_HAS_AUTHORED:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.CLOSED,
+          type: Issue,
+          state: Closed,
           author: username,
         });
       case CLOSED_ISSUES_THAT_USER_HAS_COMMENTED_ON:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.CLOSED,
+          type: Issue,
+          state: Closed,
           commenter: username,
         });
       case CLOSED_ISSUES_THAT_USER_HAS_BEEN_ASSIGNED_TO:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.CLOSED,
+          type: Issue,
+          state: Closed,
           assignee: username,
         });
       case CLOSED_ISSUES_THAT_USER_HAS_BEEN_MENTIONED_ON:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.CLOSED,
+          type: Issue,
+          state: Closed,
           mentions: username,
         });
       case CLOSED_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH:
         return new IssueQuery({
-          type: IssueType.ISSUE,
-          state: State.CLOSED,
+          type: Issue,
+          state: Closed,
           involves: username,
         });
       default:

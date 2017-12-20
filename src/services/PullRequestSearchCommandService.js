@@ -7,8 +7,8 @@ import SetupCommandService from './SetupCommandService';
 import SearchParametersPrompter from './SearchParametersPrompter';
 import UserActionParametersPrompter from './UserActionParametersPrompter';
 import IssueStateParametersPrompt from './IssueStateParametersPrompt';
-import IssueType from '../data/constants/IssueType';
-import { NONE } from '../data/constants/prompts/pullRequest/options';
+import { PullRequest } from '../data/constants/github/issue/Type';
+import { NONE } from '../data/constants/prompts/pullRequest/Options';
 import RepositorySearcher from './RepositorySearcher';
 import ReviewStatusOptionPrompter from './ReviewStatusOptionPrompter';
 
@@ -40,7 +40,7 @@ class PullRequestSearchCommandService {
       const { reviewStatus } = await ReviewStatusOptionPrompter.prompt();
       issueQuery = IssueQueryCreator.create(
         queryString,
-        IssueType.PULL_REQUEST,
+        PullRequest,
         state,
         queryUsername,
         actions,

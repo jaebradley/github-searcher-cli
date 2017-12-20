@@ -1,15 +1,15 @@
 import GitHub from 'github';
 
-import IssueType from '../../data/constants/IssueType';
-import State from '../../data/constants/State';
+import { Issue, PullRequest } from '../../data/constants/github/issue/Type';
+import { Open, Closed } from '../../data/constants/github/issue/State';
 
 const formattedTypes = {};
-formattedTypes[IssueType.PULL_REQUEST] = 'pr';
-formattedTypes[IssueType.ISSUE] = 'issue';
+formattedTypes[PullRequest] = 'pr';
+formattedTypes[Issue] = 'issue';
 
 const formattedStates = {};
-formattedStates[State.OPEN] = 'open';
-formattedStates[State.CLOSED] = 'closed';
+formattedStates[Open] = 'open';
+formattedStates[Closed] = 'closed';
 
 class IssueSearcher {
   constructor(accessToken) {
