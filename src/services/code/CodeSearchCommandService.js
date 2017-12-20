@@ -1,4 +1,4 @@
-import CodeSearchParametersPrompter from './CodeSearchParametersPrompter';
+import SearchParametersPrompter from '../SearchParametersPrompter';
 import GitHubDataStorer from '../GitHubDataStorer';
 import MatchResultsParser from './MatchResultsParser';
 import MatchingFilesSelector from './MatchingFilesSelector';
@@ -18,7 +18,7 @@ class CodeSearchCommandService {
 
     const authorizationToken = await GitHubDataStorer.getAuthorizationToken();
     const repositorySearcher = new RepositorySearcher(authorizationToken);
-    const prompter = new CodeSearchParametersPrompter(repositorySearcher);
+    const prompter = new SearchParametersPrompter(repositorySearcher);
 
     const {
       queryString,
