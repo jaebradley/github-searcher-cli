@@ -4,13 +4,15 @@ import IssueQueryCreator from './IssueQueryCreator';
 import PullRequestSearchService from './PullRequestSearchService';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
 import SetupCommandService from './SetupCommandService';
-import SearchParametersPrompter from './SearchParametersPrompter';
 import UserActionParametersPrompter from './UserActionParametersPrompter';
 import IssueStateParametersPrompt from './IssueStateParametersPrompt';
 import { PullRequest } from '../data/constants/github/issue/Type';
 import { NONE } from '../data/constants/prompts/pullRequest/Options';
 import RepositorySearcher from './RepositorySearcher';
 import ReviewStatusOptionPrompter from './ReviewStatusOptionPrompter';
+import { selectLanguage } from './prompters/LanguageSelector';
+import RepositorySelector from './prompters/RepositorySelector';
+import { promptSearchTerm } from './prompters/SearchTermPrompter';
 
 
 class PullRequestSearchCommandService {
@@ -28,17 +30,17 @@ class PullRequestSearchCommandService {
     const { quickOption } = await PullRequestSearchPrompter.promptSearchOptions();
     if (quickOption === NONE) {
       const repositorySearcher = new RepositorySearcher(authorizationToken);
-      const searchParametersPrompter = new SearchParametersPrompter(repositorySearcher);
-      const {
-        queryString,
-        organizationName,
-        repositoryName,
-        language,
-      } = await searchParametersPrompter.promptSearchParameters();
+      const repositorySelector = new RepositorySelector(repositorySearcher);
+
+      const { queryString } = await promptSearchTerm();
+      const { organizationName, repositoryName } = await repositorySelector.select();
+      const { language } = await selectLanguage();
+
       const { queryUsername, actions } = await UserActionParametersPrompter.prompt();
       const { state } = await IssueStateParametersPrompt.prompt();
       const { reviewStatus } = await ReviewStatusOptionPrompter.prompt();
-      issueQuery = IssueQueryCreator.create(
+
+      issueQuery = {
         queryString,
         PullRequest,
         state,
@@ -48,7 +50,7 @@ class PullRequestSearchCommandService {
         repositoryName,
         language,
         reviewStatus,
-      );
+      };
     } else {
       issueQuery = IssueQueryCreator.createFromPromptOption(quickOption, username);
     }
