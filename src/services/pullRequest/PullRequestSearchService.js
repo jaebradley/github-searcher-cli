@@ -1,13 +1,13 @@
 import GitHub from 'github';
 
-import { Issue, PullRequest } from '../data/constants/github/issue/Type';
-import { Open, Closed } from '../data/constants/github/issue/State';
+import { Issue, PullRequest } from '../../data/constants/github/issue/Type';
+import { Open, Closed } from '../../data/constants/github/issue/State';
 import {
   HasNotBeenReviewed,
   Required,
   Approved,
   ChangesRequested,
-} from '../data/constants/prompts/pullRequest/ReviewStatus';
+} from '../../data/constants/prompts/pullRequest/ReviewStatus';
 
 const formattedTypes = {};
 formattedTypes[PullRequest] = 'pr';

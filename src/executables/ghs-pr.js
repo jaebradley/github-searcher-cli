@@ -2,6 +2,6 @@
 
 /* eslint-disable no-console */
 
-import PullRequestSearchCommandService from '../services/PullRequestSearchCommandService';
+import PullRequestSearchCommandService from '../services/pullRequest/PullRequestSearchCommandService';
 
 PullRequestSearchCommandService.execute();
