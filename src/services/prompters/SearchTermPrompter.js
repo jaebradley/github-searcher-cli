@@ -1,14 +1,16 @@
 import inquirer from 'inquirer';
 
+const isValidSearchTerm = searchTerm => !!searchTerm && searchTerm.length > 0;
+
 const promptSearchTerm = async () => (
   inquirer.prompt([
     {
       name: 'queryString',
       message: 'Input your search string',
-      validate: searchTerm => searchTerm.length > 0,
+      validate: isValidSearchTerm,
       type: 'input',
     },
   ])
 );
 
-export default promptSearchTerm;
+export { promptSearchTerm, isValidSearchTerm };
