@@ -2,7 +2,7 @@ import GitHubDataStorer from '../GitHubDataStorer';
 import MatchResultsParser from './MatchResultsParser';
 import MatchingFilesSelector from './MatchingFilesSelector';
 import RepositorySearcher from '../RepositorySearcher';
-import SetupCommandService from '../../services/SetupCommandService';
+import SetupCommandService from '../../services/setup/SetupCommandService';
 import CodeSearcher from './CodeSearcher';
 import { selectLanguage } from '../prompters/LanguageSelector';
 import RepositorySelector from '../prompters/RepositorySelector';

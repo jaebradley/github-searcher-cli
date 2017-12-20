@@ -3,7 +3,7 @@ import GitHubDataStorer from '../GitHubDataStorer';
 import IssueQueryCreator from '../IssueQueryCreator';
 import PullRequestSearchService from './PullRequestSearchService';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
-import SetupCommandService from '../SetupCommandService';
+import SetupCommandService from '../setup/SetupCommandService';
 import UserActionParametersPrompter from '../UserActionParametersPrompter';
 import IssueStateParametersPrompt from '../IssueStateParametersPrompt';
 import { PullRequest } from '../../data/constants/github/issue/Type';

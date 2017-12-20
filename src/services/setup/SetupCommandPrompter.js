@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
 
-import UserService from './UserService';
+import UserService from '../UserService';
 
 const userService = new UserService();
 

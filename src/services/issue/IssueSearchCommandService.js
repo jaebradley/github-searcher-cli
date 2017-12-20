@@ -3,7 +3,7 @@ import IssueSearchPrompter from './IssueSearchPrompter';
 import IssueQueryCreator from '../IssueQueryCreator';
 import IssueSearcher from './IssueSearcher';
 import IssueSearchResultSelector from './IssueSearchResultSelector';
-import SetupCommandService from '../SetupCommandService';
+import SetupCommandService from '../setup/SetupCommandService';
 
 
 class IssueSearchCommandService {
