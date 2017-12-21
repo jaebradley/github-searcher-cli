@@ -34,10 +34,10 @@ describe('TwoFactorAuthenticationCodePrompter', () => {
           name: 'twoFactorAuthenticationCode',
           validate: validateAuthenticationCode,
           type: 'password',
-          message: 'Enter your two factor authentication code',
+          message: 'blahblah',
         },
       ];
-      expect(promptTwoFactorAuthenticationCode()).resolves.toEqual('foobar');
+      expect(promptTwoFactorAuthenticationCode('blahblah')).resolves.toEqual('foobar');
       expect(inquirerSpy).toHaveBeenCalledTimes(1);
       expect(inquirerSpy).toHaveBeenCalledWith(expected);
     });

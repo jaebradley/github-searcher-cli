@@ -10,7 +10,7 @@ class LoginCredentialsPrompter {
       {
         name: 'username',
         message: 'Input your GitHub Username',
-        validate: this.validateUsername,
+        validate: username => this.validateUsername(username),
         type: 'input',
       },
       {
