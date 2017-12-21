@@ -1,11 +1,12 @@
-import SearchParametersPrompter from '../SearchParametersPrompter';
 import GitHubDataStorer from '../GitHubDataStorer';
 import MatchResultsParser from './MatchResultsParser';
 import MatchingFilesSelector from './MatchingFilesSelector';
 import RepositorySearcher from '../RepositorySearcher';
 import SetupCommandService from '../../services/SetupCommandService';
-import SearchOptions from '../../data/SearchOptions';
 import CodeSearcher from './CodeSearcher';
+import { selectLanguage } from '../prompters/LanguageSelector';
+import RepositorySelector from '../prompters/RepositorySelector';
+import { promptSearchTerm } from '../prompters/SearchTermPrompter';
 
 
 class CodeSearchCommandService {
@@ -18,16 +19,18 @@ class CodeSearchCommandService {
 
     const authorizationToken = await GitHubDataStorer.getAuthorizationToken();
     const repositorySearcher = new RepositorySearcher(authorizationToken);
-    const prompter = new SearchParametersPrompter(repositorySearcher);
+    const repositorySelector = new RepositorySelector(repositorySearcher);
 
-    const {
+    const { queryString } = await promptSearchTerm();
+    const { organizationName, repositoryName } = await repositorySelector.select();
+    const { language } = await selectLanguage();
+
+    const options = {
       queryString,
       organizationName,
       repositoryName,
       language,
-    } = await prompter.promptSearchParameters();
-
-    const options = new SearchOptions(queryString, organizationName, repositoryName, language);
+    };
 
     const codeSearcher = new CodeSearcher(authorizationToken);
 

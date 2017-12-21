@@ -2,24 +2,16 @@ import inquirer from 'inquirer';
 import InquirerAutocompletePrompt from 'inquirer-autocomplete-prompt';
 import fuzzy from 'fuzzy';
 
-import GitHubLanguages from '../data/constants/github/Languages';
-
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
 
-class SearchParametersPrompter {
+class RepositorySelector {
   constructor(repositorySearcher) {
     this.repositorySearcher = repositorySearcher;
     this.repositoryNames = null;
   }
 
-  async promptSearchParameters() {
+  async select() {
     return inquirer.prompt([
-      {
-        name: 'queryString',
-        message: 'Input your search string',
-        validate: str => str.length > 0,
-        type: 'input',
-      },
       {
         name: 'organizationName',
         message: 'Input optional organization/user name',
@@ -34,14 +26,6 @@ class SearchParametersPrompter {
           const searchTermValue = searchTerm || '';
           return this.findMatchingRepositories(answersSoFar.organizationName, searchTermValue);
         },
-      },
-      {
-        name: 'language',
-        message: 'Choose optional language',
-        type: 'autocomplete',
-        source: (answersSoFar, input) => (
-          Promise.resolve(fuzzy.filter(input || '', GitHubLanguages).map(match => match.original))
-        ),
       },
     ]);
   }
@@ -58,4 +42,4 @@ class SearchParametersPrompter {
   }
 }
 
-export default SearchParametersPrompter;
+export default RepositorySelector;
