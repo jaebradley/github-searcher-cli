@@ -3,19 +3,19 @@ import InquirerAutocompletePrompt from 'inquirer-autocomplete-prompt';
 import fuzzy from 'fuzzy';
 
 import {
-  NONE,
-  HAS_NOT_BEEN_REVIEWED,
-  REQUIRED,
-  APPROVED,
-  CHANGES_REQUESTED,
+  None,
+  HasNotBeenReviewed,
+  Required,
+  Approved,
+  ChangesRequested,
 } from '../data/constants/prompts/pullRequest/ReviewStatus';
 
-const CHOICES = [
-  NONE,
-  HAS_NOT_BEEN_REVIEWED,
-  REQUIRED,
-  APPROVED,
-  CHANGES_REQUESTED,
+const choices = [
+  None,
+  HasNotBeenReviewed,
+  Required,
+  Approved,
+  ChangesRequested,
 ];
 
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
@@ -28,7 +28,7 @@ class ReviewStatusOptionPrompter {
         name: 'reviewStatus',
         message: 'Choose a review status',
         source: (answersSoFar, input) => (
-          Promise.resolve(fuzzy.filter(input || '', CHOICES).map(match => match.original))
+          Promise.resolve(fuzzy.filter(input || '', choices).map(match => match.original))
         ),
       },
     ]);
