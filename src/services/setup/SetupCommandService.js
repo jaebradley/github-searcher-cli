@@ -1,13 +1,17 @@
 /* eslint-disable no-console */
 
 import AuthorizationPersister from '../AuthorizationPersister';
-import SetupCommandPrompter from './SetupCommandPrompter';
 import { TwoFactorAuthenticationRequiredErrorMessage } from '../../data/constants/github/Errors';
+import UserService from '../UserService';
+import LoginCredentialsPrompter from '../prompters/LoginCredentialsPrompter';
+import { promptTwoFactorAuthenticationCode } from '../prompters/TwoFactorAuthenticationCodePrompter';
 
 class SetupCommandService {
   static async execute() {
     try {
-      const { username, password } = await SetupCommandPrompter.promptLoginCredentials();
+      const userService = new UserService();
+      const loginCredentialsPrompter = new LoginCredentialsPrompter(userService);
+      const { username, password } = await loginCredentialsPrompter.prompt();
 
       const authorizationPersister = new AuthorizationPersister(username, password);
 
@@ -19,8 +23,7 @@ class SetupCommandService {
           throw e;
         }
 
-        const { twoFactorAuthenticationCode } = await SetupCommandPrompter
-          .promptTwoFactorAuthenticationCode('Input two factor authentication code to remove existing authorization');
+        const { twoFactorAuthenticationCode } = await promptTwoFactorAuthenticationCode('Input two factor authentication code to remove existing authorization');
         await authorizationPersister
           .deleteExistingTwoFactorAuthorization(twoFactorAuthenticationCode);
       }
@@ -33,8 +36,7 @@ class SetupCommandService {
         if (message !== TwoFactorAuthenticationRequiredErrorMessage) {
           throw e;
         } else {
-          const { twoFactorAuthenticationCode } = await SetupCommandPrompter
-            .promptTwoFactorAuthenticationCode('Input two factor authentication code to create new authorization');
+          const { twoFactorAuthenticationCode } = await promptTwoFactorAuthenticationCode('Input two factor authentication code to create new authorization');
           await authorizationPersister.saveNewTwoFactorAuthorization(twoFactorAuthenticationCode);
           console.log(SetupCommandService.getSuccessMessage());
         }
