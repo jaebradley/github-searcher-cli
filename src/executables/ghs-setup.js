@@ -2,6 +2,6 @@
 
 /* eslint-disable no-console */
 
-import SetupCommandService from '../services/SetupCommandService';
+import SetupCommandService from '../services/setup/SetupCommandService';
 
 SetupCommandService.execute();

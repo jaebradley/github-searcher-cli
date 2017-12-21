@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 
-import AuthorizationPersister from './AuthorizationPersister';
+import AuthorizationPersister from '../AuthorizationPersister';
 import SetupCommandPrompter from './SetupCommandPrompter';
-import { TwoFactorAuthenticationRequiredErrorMessage } from '../data/constants/github/Errors';
+import { TwoFactorAuthenticationRequiredErrorMessage } from '../../data/constants/github/Errors';
 
 class SetupCommandService {
   static async execute() {
