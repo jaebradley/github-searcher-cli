@@ -1,18 +1,18 @@
 import PullRequestSearchPrompter from './PullRequestSearchPrompter';
-import GitHubDataStorer from './GitHubDataStorer';
-import IssueQueryCreator from './IssueQueryCreator';
+import GitHubDataStorer from '../GitHubDataStorer';
+import IssueQueryCreator from '../IssueQueryCreator';
 import PullRequestSearchService from './PullRequestSearchService';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
-import SetupCommandService from './SetupCommandService';
-import UserActionParametersPrompter from './UserActionParametersPrompter';
-import IssueStateParametersPrompt from './IssueStateParametersPrompt';
-import { PullRequest } from '../data/constants/github/issue/Type';
-import { NONE } from '../data/constants/prompts/pullRequest/Options';
-import RepositorySearcher from './RepositorySearcher';
-import ReviewStatusOptionPrompter from './ReviewStatusOptionPrompter';
-import { selectLanguage } from './prompters/LanguageSelector';
-import RepositorySelector from './prompters/RepositorySelector';
-import { promptSearchTerm } from './prompters/SearchTermPrompter';
+import SetupCommandService from '../SetupCommandService';
+import UserActionParametersPrompter from '../UserActionParametersPrompter';
+import IssueStateParametersPrompt from '../IssueStateParametersPrompt';
+import { PullRequest } from '../../data/constants/github/issue/Type';
+import { NONE } from '../../data/constants/prompts/pullRequest/Options';
+import RepositorySearcher from '../RepositorySearcher';
+import ReviewStatusOptionPrompter from '../ReviewStatusOptionPrompter';
+import { selectLanguage } from '../prompters/LanguageSelector';
+import RepositorySelector from '../prompters/RepositorySelector';
+import { promptSearchTerm } from '../prompters/SearchTermPrompter';
 
 
 class PullRequestSearchCommandService {
