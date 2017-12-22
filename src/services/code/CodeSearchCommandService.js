@@ -26,7 +26,7 @@ class CodeSearchCommandService {
     const { language } = await selectLanguage();
 
     const options = {
-      queryString,
+      searchTerm: queryString,
       organizationName,
       repositoryName,
       language,
