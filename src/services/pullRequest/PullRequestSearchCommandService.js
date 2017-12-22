@@ -4,7 +4,7 @@ import IssueQueryCreator from '../IssueQueryCreator';
 import PullRequestSearchService from './PullRequestSearchService';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
 import SetupCommandService from '../setup/SetupCommandService';
-import IssueStateParametersPrompt from '../IssueStateParametersPrompt';
+import selectIssueState from '../prompters/selectIssueState';
 import { PullRequest } from '../../data/constants/github/issue/Type';
 import { NONE } from '../../data/constants/prompts/pullRequest/Options';
 import RepositorySearcher from '../RepositorySearcher';
@@ -40,7 +40,7 @@ class PullRequestSearchCommandService {
       const queryUsername = userIssueActions.username;
       const { actions } = userIssueActions;
 
-      const { state } = await IssueStateParametersPrompt.prompt();
+      const { state } = await selectIssueState();
       const { reviewStatus } = await ReviewStatusOptionPrompter.prompt();
 
       issueQuery = IssueQueryCreator.create(
