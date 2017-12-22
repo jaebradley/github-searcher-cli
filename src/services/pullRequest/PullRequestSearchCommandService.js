@@ -4,7 +4,6 @@ import IssueQueryCreator from '../IssueQueryCreator';
 import PullRequestSearchService from './PullRequestSearchService';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
 import SetupCommandService from '../setup/SetupCommandService';
-import UserActionParametersPrompter from '../UserActionParametersPrompter';
 import IssueStateParametersPrompt from '../IssueStateParametersPrompt';
 import { PullRequest } from '../../data/constants/github/issue/Type';
 import { NONE } from '../../data/constants/prompts/pullRequest/Options';
@@ -13,6 +12,7 @@ import ReviewStatusOptionPrompter from '../ReviewStatusOptionPrompter';
 import { selectLanguage } from '../prompters/LanguageSelector';
 import RepositorySelector from '../prompters/RepositorySelector';
 import { promptSearchTerm } from '../prompters/SearchTermPrompter';
+import { selectUserIssueActions } from '../prompters/UserIssueActionsSelector';
 
 
 class PullRequestSearchCommandService {
@@ -36,7 +36,10 @@ class PullRequestSearchCommandService {
       const { organizationName, repositoryName } = await repositorySelector.select();
       const { language } = await selectLanguage();
 
-      const { queryUsername, actions } = await UserActionParametersPrompter.prompt();
+      const userIssueActions = await selectUserIssueActions();
+      const queryUsername = userIssueActions.username;
+      const { actions } = userIssueActions;
+
       const { state } = await IssueStateParametersPrompt.prompt();
       const { reviewStatus } = await ReviewStatusOptionPrompter.prompt();
 

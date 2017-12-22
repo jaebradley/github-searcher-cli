@@ -6,7 +6,7 @@ import {
   Mentioned,
   Involved,
 } from '../../data/constants/github/issue/UserActions';
-import { isValidUsername, selectUserIssueActions } from './UserIssueActionSelector';
+import { isValidUsername, selectUserIssueActions } from './UserIssueActionsSelector';
 
 describe('UserIssueActionSelector', () => {
   describe('isValidUsername', () => {
