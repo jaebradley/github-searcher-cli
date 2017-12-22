@@ -43,7 +43,7 @@ class PullRequestSearchCommandService {
       const { state } = await IssueStateParametersPrompt.prompt();
       const { reviewStatus } = await ReviewStatusOptionPrompter.prompt();
 
-      issueQuery = {
+      issueQuery = IssueQueryCreator.create(
         queryString,
         PullRequest,
         state,
@@ -53,7 +53,7 @@ class PullRequestSearchCommandService {
         repositoryName,
         language,
         reviewStatus,
-      };
+      );
     } else {
       issueQuery = IssueQueryCreator.createFromPromptOption(quickOption, username);
     }
