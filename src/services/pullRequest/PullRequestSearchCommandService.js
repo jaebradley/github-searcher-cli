@@ -1,6 +1,5 @@
 import PullRequestSearchPrompter from './PullRequestSearchPrompter';
 import GitHubDataStorer from '../GitHubDataStorer';
-import IssueQueryCreator from '../IssueQueryCreator';
 import PullRequestSearchService from './PullRequestSearchService';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
 import SetupCommandService from '../setup/SetupCommandService';
@@ -13,6 +12,7 @@ import { selectLanguage } from '../prompters/LanguageSelector';
 import RepositorySelector from '../prompters/RepositorySelector';
 import { promptSearchTerm } from '../prompters/SearchTermPrompter';
 import { selectUserIssueActions } from '../prompters/UserIssueActionsSelector';
+import buildSearchTermsFromOption from '../buildSearchTermsFromOption';
 
 
 class PullRequestSearchCommandService {
@@ -26,7 +26,7 @@ class PullRequestSearchCommandService {
       username = await GitHubDataStorer.getUsername();
     }
 
-    let issueQuery;
+    let options;
     const { quickOption } = await PullRequestSearchPrompter.promptSearchOptions();
     if (quickOption === NONE) {
       const repositorySearcher = new RepositorySearcher(authorizationToken);
@@ -43,23 +43,23 @@ class PullRequestSearchCommandService {
       const { state } = await selectIssueState();
       const { reviewStatus } = await ReviewStatusOptionPrompter.prompt();
 
-      issueQuery = IssueQueryCreator.create(
-        queryString,
-        PullRequest,
-        state,
-        queryUsername,
-        actions,
+      options = {
+        searchTerm: queryString,
+        type: PullRequest,
+        issueActionUsername: queryUsername,
+        issueActions: actions,
         organizationName,
         repositoryName,
+        state,
         language,
         reviewStatus,
-      );
+      };
     } else {
-      issueQuery = IssueQueryCreator.createFromPromptOption(quickOption, username);
+      options = buildSearchTermsFromOption(quickOption, username);
     }
 
     const searchService = new PullRequestSearchService(authorizationToken);
-    const response = await searchService.search(issueQuery);
+    const response = await searchService.search(options);
     const searchResultsSelector = new PullRequestSearchResultSelector();
     await searchResultsSelector.select(response.data.items);
   }
