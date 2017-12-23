@@ -1,12 +1,11 @@
 import PullRequestSearchPrompter from './PullRequestSearchPrompter';
 import GitHubDataStorer from '../GitHubDataStorer';
-import PullRequestSearchService from './PullRequestSearchService';
+import Searcher from '../Searcher';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
 import SetupCommandService from '../setup/SetupCommandService';
 import selectIssueState from '../prompters/selectIssueState';
 import { PullRequest } from '../../data/constants/github/issue/Type';
 import { NONE } from '../../data/constants/prompts/pullRequest/Options';
-import RepositorySearcher from '../RepositorySearcher';
 import ReviewStatusOptionPrompter from '../ReviewStatusOptionPrompter';
 import { selectLanguage } from '../prompters/LanguageSelector';
 import RepositorySelector from '../prompters/RepositorySelector';
@@ -26,11 +25,12 @@ class PullRequestSearchCommandService {
       username = await GitHubDataStorer.getUsername();
     }
 
+    const searcher = new Searcher(authorizationToken);
+
     let options;
     const { quickOption } = await PullRequestSearchPrompter.promptSearchOptions();
     if (quickOption === NONE) {
-      const repositorySearcher = new RepositorySearcher(authorizationToken);
-      const repositorySelector = new RepositorySelector(repositorySearcher);
+      const repositorySelector = new RepositorySelector(searcher);
 
       const { queryString } = await promptSearchTerm();
       const { organizationName, repositoryName } = await repositorySelector.select();
@@ -57,9 +57,8 @@ class PullRequestSearchCommandService {
     } else {
       options = buildSearchTermsFromOption(quickOption, username);
     }
-
-    const searchService = new PullRequestSearchService(authorizationToken);
-    const response = await searchService.search(options);
+    
+    const response = await searcher.searchIssues(options);
     const searchResultsSelector = new PullRequestSearchResultSelector();
     await searchResultsSelector.select(response.data.items);
   }

@@ -1,7 +1,7 @@
 import GitHubDataStorer from '../GitHubDataStorer';
 import IssueSearchPrompter from './IssueSearchPrompter';
 import buildSearchTermsFromOption from '../buildSearchTermsFromOption';
-import IssueSearcher from './IssueSearcher';
+import Searcher from '../Searcher';
 import IssueSearchResultSelector from './IssueSearchResultSelector';
 import SetupCommandService from '../setup/SetupCommandService';
 
@@ -19,8 +19,8 @@ class IssueSearchCommandService {
 
     const { quickOption } = await IssueSearchPrompter.promptSearchOptions();
     const searchTerms = buildSearchTermsFromOption(quickOption, username);
-    const searcher = new IssueSearcher(accessToken);
-    const response = await searcher.search(searchTerms);
+    const searcher = new Searcher(accessToken);
+    const response = await searcher.searchIssues(searchTerms);
     const searchResultSelector = new IssueSearchResultSelector();
     await searchResultSelector.select(response.data.items);
   }

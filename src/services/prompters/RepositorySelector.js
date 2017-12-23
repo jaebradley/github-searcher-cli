@@ -32,7 +32,7 @@ class RepositorySelector {
 
   async findMatchingRepositories(organizationName, repositoryName) {
     return this.repositorySearcher
-      .search(organizationName, repositoryName)
+      .searchRepositories(organizationName, repositoryName)
       .then(result => result.data.items.map(repository => repository.name))
       .then((repositoryNames) => {
         let names = ['None'];
