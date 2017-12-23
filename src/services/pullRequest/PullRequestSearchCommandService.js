@@ -57,7 +57,7 @@ class PullRequestSearchCommandService {
     } else {
       options = buildSearchTermsFromOption(quickOption, username);
     }
-    
+
     const response = await searcher.searchIssues(options);
     const searchResultsSelector = new PullRequestSearchResultSelector();
     await searchResultsSelector.select(response.data.items);
