@@ -6,7 +6,7 @@ import SetupCommandService from '../setup/SetupCommandService';
 import selectIssueState from '../prompters/selectIssueState';
 import { PullRequest } from '../../data/constants/github/issue/Type';
 import { NONE } from '../../data/constants/prompts/pullRequest/Options';
-import ReviewStatusOptionPrompter from '../ReviewStatusOptionPrompter';
+import { selectReviewStatus } from '../prompters/ReviewStatusSelector';
 import { selectLanguage } from '../prompters/LanguageSelector';
 import RepositorySelector from '../prompters/RepositorySelector';
 import { promptSearchTerm } from '../prompters/SearchTermPrompter';
@@ -41,7 +41,7 @@ class PullRequestSearchCommandService {
       const { actions } = userIssueActions;
 
       const { state } = await selectIssueState();
-      const { reviewStatus } = await ReviewStatusOptionPrompter.prompt();
+      const { reviewStatus } = await selectReviewStatus();
 
       options = {
         searchTerm: queryString,
