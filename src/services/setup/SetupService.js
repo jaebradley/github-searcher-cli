@@ -1,10 +1,9 @@
 import UserService from '../UserService';
 import LoginCredentialsPrompter from '../prompters/LoginCredentialsPrompter';
-import handleCredentialError from './handleCredentialError';
+import { handleCredentialError } from './CredentialErrorHandler';
 
 const getLoginCredentials = async () => {
-  const userService = new UserService();
-  const loginCredentialsPrompter = new LoginCredentialsPrompter(userService);
+  const loginCredentialsPrompter = new LoginCredentialsPrompter(new UserService());
   const { username, password } = await loginCredentialsPrompter.prompt();
   return { username, password };
 };
