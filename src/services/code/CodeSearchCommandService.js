@@ -1,7 +1,7 @@
 import GitHubDataStorer from '../GitHubDataStorer';
 import MatchResultsParser from './MatchResultsParser';
 import MatchingFilesSelector from './MatchingFilesSelector';
-import SetupCommandService from '../../services/setup/SetupCommandService';
+import executeSetup from '../../services/setup/executeSetup';
 import Searcher from '../Searcher';
 import { selectLanguage } from '../prompters/LanguageSelector';
 import RepositorySelector from '../prompters/RepositorySelector';
@@ -13,7 +13,7 @@ class CodeSearchCommandService {
     const hasAuthorizationToken = await GitHubDataStorer.hasAuthorizationToken();
 
     if (!hasAuthorizationToken) {
-      await SetupCommandService.execute();
+      await executeSetup();
     }
 
     const authorizationToken = await GitHubDataStorer.getAuthorizationToken();
