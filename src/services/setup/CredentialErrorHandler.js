@@ -1,6 +1,6 @@
 import { TwoFactorAuthenticationRequiredErrorMessage } from '../../data/constants/github/Errors';
 import { promptTwoFactorAuthenticationCode } from '../prompters/TwoFactorAuthenticationCodePrompter';
-import { RemoveExistingTwoFactorAuthenticationMessage } from '../../data/constants/setup/Message';
+import { InputTwoFactorAuthentication } from '../../data/constants/setup/Message';
 
 const isTwoFactorAuthenticationError = error => (
   !!error
@@ -15,7 +15,7 @@ const handleCredentialError = async (error) => {
 
   const {
     twoFactorAuthenticationCode,
-  } = await promptTwoFactorAuthenticationCode(RemoveExistingTwoFactorAuthenticationMessage);
+  } = await promptTwoFactorAuthenticationCode(InputTwoFactorAuthentication);
   return { twoFactorAuthenticationCode };
 };
 

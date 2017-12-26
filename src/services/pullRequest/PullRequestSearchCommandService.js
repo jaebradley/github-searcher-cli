@@ -2,7 +2,7 @@ import PullRequestSearchPrompter from './PullRequestSearchPrompter';
 import GitHubDataStorer from '../GitHubDataStorer';
 import Searcher from '../Searcher';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
-import SetupCommandService from '../setup/SetupCommandService';
+import executeSetup from '../setup/executeSetup';
 import selectIssueState from '../prompters/selectIssueState';
 import { PullRequest } from '../../data/constants/github/issue/Type';
 import { NONE } from '../../data/constants/prompts/pullRequest/Options';
@@ -20,7 +20,7 @@ class PullRequestSearchCommandService {
     let username = await GitHubDataStorer.getUsername();
 
     if (!authorizationToken || !username) {
-      await SetupCommandService.execute();
+      await executeSetup();
       authorizationToken = await GitHubDataStorer.getAuthorizationToken();
       username = await GitHubDataStorer.getUsername();
     }

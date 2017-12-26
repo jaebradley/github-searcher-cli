@@ -1,6 +1,6 @@
 import { TwoFactorAuthenticationRequiredErrorMessage } from '../../data/constants/github/Errors';
 import * as TwoFactorAuthenticationCodePrompter from '../prompters/TwoFactorAuthenticationCodePrompter';
-import { RemoveExistingTwoFactorAuthenticationMessage } from '../../data/constants/setup/Message';
+import { InputTwoFactorAuthentication } from '../../data/constants/setup/Message';
 import { isTwoFactorAuthenticationError, handleCredentialError } from './CredentialErrorHandler';
 
 describe('CredentialErrorHandler', () => {
@@ -53,7 +53,7 @@ describe('CredentialErrorHandler', () => {
       } = await handleCredentialError(twoFactorAuthenticationError);
       expect(twoFactorAuthenticationCode).toEqual('foobar');
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith(RemoveExistingTwoFactorAuthenticationMessage);
+      expect(spy).toHaveBeenCalledWith(InputTwoFactorAuthentication);
     });
   });
 });

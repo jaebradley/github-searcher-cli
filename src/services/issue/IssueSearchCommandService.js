@@ -3,7 +3,7 @@ import IssueSearchPrompter from './IssueSearchPrompter';
 import buildSearchTermsFromOption from '../buildSearchTermsFromOption';
 import Searcher from '../Searcher';
 import IssueSearchResultSelector from './IssueSearchResultSelector';
-import SetupCommandService from '../setup/SetupCommandService';
+import executeSetup from '../setup/executeSetup';
 
 
 class IssueSearchCommandService {
@@ -12,7 +12,7 @@ class IssueSearchCommandService {
     let username = await GitHubDataStorer.getUsername();
 
     if (!accessToken || !username) {
-      await SetupCommandService.execute();
+      await executeSetup();
       accessToken = await GitHubDataStorer.getAuthorizationToken();
       username = await GitHubDataStorer.getUsername();
     }
