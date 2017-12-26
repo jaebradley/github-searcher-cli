@@ -30,19 +30,20 @@ const OPTIONS = [
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH,
 ];
 
-class IssueSearchPrompter {
-  static async promptSearchOptions() {
-    return inquirer.prompt([
-      {
-        name: 'quickOption',
-        message: 'Select an option',
-        type: 'autocomplete',
-        source: (answersSoFar, input) => (
-          Promise.resolve(fuzzy.filter(input || '', OPTIONS).map(match => match.original))
-        ),
-      },
-    ]);
-  }
-}
+const filterOptions = (answersSoFar, input) => (Promise.resolve(fuzzy.filter(input || '', OPTIONS).map(match => match.original)));
 
-export default IssueSearchPrompter;
+const selectIssueOption = async () => (
+  inquirer.prompt([
+    {
+      name: 'quickOption',
+      message: 'Select an option',
+      type: 'autocomplete',
+      source: filterOptions,
+    },
+  ])
+);
+
+export {
+  selectIssueOption,
+  filterOptions,
+};
