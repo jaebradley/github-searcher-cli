@@ -4,7 +4,7 @@ import { buildSearchQuery } from './SearchQueryBuilder';
 
 class Searcher {
   constructor(accessToken) {
-    this.client = GitHub();
+    this.client = GitHub({ headers: { Accept: 'application/vnd.github.v3.text-match+json' } });
     this.client.authenticate({
       type: 'token',
       token: accessToken,

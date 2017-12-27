@@ -9,6 +9,7 @@ class MatchResultsParser {
   }
 
   static parseFile(fileData) {
+    console.log(fileData);
     const {
       name,
       path,

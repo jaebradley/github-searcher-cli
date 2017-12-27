@@ -19,7 +19,6 @@ const executeCodeSearch = async () => {
     const queryParameters = await selectCodeQuery(searcher);
     const results = await searcher.searchCode(queryParameters);
     const matches = MatchResultsParser.parse(results);
-
     const filesSelector = new MatchingFilesSelector();
     await filesSelector.selectMatchingFile(matches);
   } catch (e) {
