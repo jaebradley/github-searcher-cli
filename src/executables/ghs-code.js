@@ -1,9 +1,5 @@
 /* eslint-disable no-console */
 
-import CodeSearchCommandService from '../services/code/CodeSearchCommandService';
+import executeCodeSearch from '../services/code/executeCodeSearch';
 
-try {
-  CodeSearchCommandService.execute();
-} catch (e) {
-  console.error(`Rut ro! Unexpected error: ${e}`);
-}
+executeCodeSearch();
