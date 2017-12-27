@@ -1,7 +1,7 @@
 import { selectLanguage } from './prompters/LanguageSelector';
 import RepositorySelector from './prompters/RepositorySelector';
 import { promptSearchTerm } from './prompters/SearchTermPrompter';
-import IssueSearchPrompter from './issue/IssueSearchPrompter';
+import { selectIssueOption } from './prompters/IssueOptionSelector';
 
 const selectCodeQuery = async (searcher) => {
   const repositorySelector = new RepositorySelector(searcher);
@@ -19,7 +19,7 @@ const selectCodeQuery = async (searcher) => {
 };
 
 const selectIssueQuery = async () => {
-  const { quickOption } = await IssueSearchPrompter.promptSearchOptions();
+  const { quickOption } = await selectIssueOption();
   return { quickOption };
 };
 
