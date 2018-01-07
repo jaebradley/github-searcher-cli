@@ -43,7 +43,11 @@ class MatchingFilesSelector {
         matchingFragments,
       } = file;
       matchingFragments.forEach((fragment) => {
-        const message = styleFragment({ filePath: path, repositoryName: fullRepositoryName, fragment });
+        const message = styleFragment({
+          filePath: path,
+          repositoryName: fullRepositoryName,
+          fragment,
+        });
         this.messageToBrowserURLs[message] = file.browserURL;
         choices.push({
           name: message,
