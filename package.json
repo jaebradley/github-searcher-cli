@@ -33,7 +33,7 @@
   "jest": {
     "testEnvironment": "node",
     "testPathIgnorePatterns": [
-      "/Users/jaebradley/projects/github-searcher-cli/src/services/code/FragmentStyler.test.js"
+      "FragmentStyler.test.js"
     ]
   },
   "devDependencies": {
