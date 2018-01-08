@@ -3,7 +3,7 @@ import InquirerAutocompletePrompt from 'inquirer-autocomplete-prompt';
 import open from 'open';
 import fuzzy from 'fuzzy';
 
-import MatchingFragmentFormatter from './MatchingFragmentFormatter';
+import { styleFragment } from './FragmentStyler';
 
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
 
@@ -43,7 +43,11 @@ class MatchingFilesSelector {
         matchingFragments,
       } = file;
       matchingFragments.forEach((fragment) => {
-        const message = MatchingFragmentFormatter.format(path, fullRepositoryName, fragment);
+        const message = styleFragment({
+          filePath: path,
+          repositoryName: fullRepositoryName,
+          fragment,
+        });
         this.messageToBrowserURLs[message] = file.browserURL;
         choices.push({
           name: message,

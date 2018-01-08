@@ -31,7 +31,10 @@
   },
   "homepage": "https://github.com/jaebradley/github-searcher-cli#readme",
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "FragmentStyler.test.js"
+    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^5.1.1",
