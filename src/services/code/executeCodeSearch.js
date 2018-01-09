@@ -2,7 +2,7 @@ import GitHubDataStorer from '../GitHubDataStorer';
 import Searcher from '../Searcher';
 import executeSetup from '../../services/setup/executeSetup';
 import { selectCodeQuery } from '../QuerySelector';
-import MatchResultsParser from './MatchResultsParser';
+import { parseResults } from './MatchingFragmentResultsParser';
 import MatchingFilesSelector from './MatchingFilesSelector';
 import { Failure } from '../../data/constants/Message';
 
@@ -18,7 +18,7 @@ const executeCodeSearch = async () => {
     const searcher = new Searcher(authorizationToken);
     const queryParameters = await selectCodeQuery(searcher);
     const results = await searcher.searchCode(queryParameters);
-    const matches = MatchResultsParser.parse(results);
+    const matches = parseResults(results);
     const filesSelector = new MatchingFilesSelector();
     await filesSelector.selectMatchingFile(matches);
   } catch (e) {
