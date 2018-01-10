@@ -1,3 +1,3 @@
-import IssueSearchCommandService from '../services/issue/IssueSearchCommandService';
+import executeIssueSearch from '../services/issue/executeIssueSearch';
 
-IssueSearchCommandService.execute();
+executeIssueSearch();
