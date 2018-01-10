@@ -1,6 +1,7 @@
 import { Issue, PullRequest } from '../data/constants/github/issue/Type';
 import { Open, Closed } from '../data/constants/github/issue/State';
 import {
+  None,
   HasNotBeenReviewed,
   Required,
   Approved,
@@ -68,6 +69,10 @@ describe('SearchQueryBuilder', () => {
 
     it('should return changes requested status', () => {
       expect(getFormattedReviewStatus(ChangesRequested)).toEqual('changes_requested');
+    });
+
+    it('should return none status', () => {
+      expect(getFormattedReviewStatus(None)).toEqual(null);
     });
 
     it('should throw an error for unknown status', () => {
