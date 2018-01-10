@@ -8,6 +8,7 @@ import {
 import { Issue, PullRequest } from '../data/constants/github/issue/Type';
 import { Open, Closed } from '../data/constants/github/issue/State';
 import {
+  None,
   HasNotBeenReviewed,
   Required,
   Approved,
@@ -76,6 +77,8 @@ const getFormattedReviewStatus = (status) => {
       return 'approved';
     case ChangesRequested:
       return 'changes_requested';
+    case None:
+      return null;
     default:
       throw new Error(`Unknown review status: ${status}`);
   }
