@@ -4,6 +4,8 @@
 
 # GitHub Searcher CLI
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jaebradley/github-searcher-cli.svg)](https://greenkeeper.io/)
+
 ![alt-text](https://imgur.com/ddiCSwe.png)
 
 ## Introduction
