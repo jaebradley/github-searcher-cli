@@ -6,14 +6,12 @@ const parseFragmentMatches = ({ fragment, matches }) => (
 );
 
 const parseResults = results => (
-  results.data.items.map(({
-    name, path, html_url, repository, text_matches,
-  }) => ({
-    fullRepositoryName: repository.full_name,
-    matchingFragments: text_matches.map(textMatch => parseFragmentMatches(textMatch)),
-    browserURL: html_url,
-    name,
-    path,
+  results.data.items.map(item => ({
+    fullRepositoryName: item.repository.full_name,
+    matchingFragments: item.text_matches.map(textMatch => parseFragmentMatches(textMatch)),
+    browserURL: item.html_url,
+    name: item.name,
+    path: item.path,
   }))
 );
 

@@ -6,21 +6,19 @@ class PullRequestFormatter {
     const {
       number,
       title,
-      repository_url,
       labels,
       state,
       comments,
-      updated_at,
     } = pullRequest;
 
-    const repositoryName = PullRequestFormatter.parseRepositoryName(repository_url);
+    const repositoryName = PullRequestFormatter.parseRepositoryName(pullRequest.repository_url);
     const formattedTitle = PullRequestFormatter.formatTitle(title);
     const formattedIdentifier = PullRequestFormatter
       .formatPullRequestIdentifier(repositoryName, number);
     const formattedState = PullRequestFormatter.formatState(state);
     const formattedCommentCount = PullRequestFormatter.formatCommentCount(comments);
     const formattedLabels = PullRequestFormatter.formatLabels(labels);
-    const formattedUpdatedAt = PullRequestFormatter.formatUpdatedAt(updated_at);
+    const formattedUpdatedAt = PullRequestFormatter.formatUpdatedAt(pullRequest.updated_at);
 
     let formattedPullRequest = '';
 
