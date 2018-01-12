@@ -6,22 +6,20 @@ class IssueFormatter {
     const {
       number,
       title,
-      repository_url,
       labels,
       state,
       comments,
-      updated_at,
       assignee,
     } = issue;
 
-    const repositoryName = IssueFormatter.parseRepositoryName(repository_url);
+    const repositoryName = IssueFormatter.parseRepositoryName(issue.repository_url);
     const formattedTitle = IssueFormatter.formatTitle(title);
     const formattedIdentifier = IssueFormatter
       .formatPullRequestIdentifier(repositoryName, number);
     const formattedState = IssueFormatter.formatState(state);
     const formattedCommentCount = IssueFormatter.formatCommentCount(comments);
     const formattedLabels = IssueFormatter.formatLabels(labels);
-    const formattedUpdatedAt = IssueFormatter.formatUpdatedAt(updated_at);
+    const formattedUpdatedAt = IssueFormatter.formatUpdatedAt(issue.updated_at);
     const formattedAssignee = IssueFormatter.formatAssignee(assignee);
 
     let formattedIssue = '';
