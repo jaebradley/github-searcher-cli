@@ -19,8 +19,11 @@ class Searcher {
     return this.client.search.code({ q: buildSearchQuery(options) });
   }
 
-  async searchRepositories(organizationName, repoNameContains) {
-    return this.client.search.repos({ q: `org:${organizationName} ${repoNameContains}` });
+  async searchRepositories(organizationName, repositoryName) {
+    if (!organizationName) {
+      throw new Error('Organization name must be defined when searching repositories');
+    }
+    return this.client.search.repos({ q: `org:${organizationName} ${repositoryName || ''}` });
   }
 }
 
