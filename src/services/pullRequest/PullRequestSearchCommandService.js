@@ -1,4 +1,4 @@
-import PullRequestSearchPrompter from './PullRequestSearchPrompter';
+import { selectPullRequestOption } from '../prompters/PullRequestOptionSelector';
 import GitHubDataStorer from '../GitHubDataStorer';
 import Searcher from '../Searcher';
 import PullRequestSearchResultSelector from './PullRequestSearchResultSelector';
@@ -28,7 +28,7 @@ class PullRequestSearchCommandService {
     const searcher = new Searcher(authorizationToken);
 
     let options;
-    const { quickOption } = await PullRequestSearchPrompter.promptSearchOptions();
+    const { quickOption } = await selectPullRequestOption();
     if (quickOption === NONE) {
       const repositorySelector = new RepositorySelector(searcher);
 
