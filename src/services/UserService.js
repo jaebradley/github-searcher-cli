@@ -1,8 +1,8 @@
-import GitHub from 'github';
+import { Octokit } from '@octokit/rest';
 
 class UserService {
   constructor() {
-    this.client = new GitHub();
+    this.client = new Octokit();
   }
 
   async usernameExists(username) {
