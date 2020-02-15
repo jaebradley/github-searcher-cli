@@ -30,7 +30,7 @@ const OPTIONS = [
   CLOSED_ISSUES_THAT_USER_HAS_BEEN_INVOLVED_WITH,
 ];
 
-const filterOptions = (answersSoFar, input) => (Promise.resolve(fuzzy.filter(input || '', OPTIONS).map(match => match.original)));
+const filterOptions = (answersSoFar, input) => (Promise.resolve(fuzzy.filter(input || '', OPTIONS).map((match) => match.original)));
 
 const selectIssueOption = async () => (
   inquirer.prompt([

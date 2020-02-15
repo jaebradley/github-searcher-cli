@@ -21,7 +21,7 @@ class RepositorySelector {
         name: 'repositoryName',
         message: 'Input optional repository name',
         type: 'autocomplete',
-        when: answersSoFar => answersSoFar.organizationName.length > 0,
+        when: (answersSoFar) => answersSoFar.organizationName.length > 0,
         source: (answersSoFar, searchTerm) => {
           const searchTermValue = searchTerm || '';
           return this.findMatchingRepositories(answersSoFar.organizationName, searchTermValue);
@@ -33,11 +33,11 @@ class RepositorySelector {
   async findMatchingRepositories(organizationName, repositoryName) {
     return this.repositorySearcher
       .searchRepositories(organizationName, repositoryName)
-      .then(result => result.data.items.map(repository => repository.name))
+      .then((result) => result.data.items.map((repository) => repository.name))
       .then((repositoryNames) => {
         let names = ['None'];
         names = names.concat(repositoryNames);
-        return fuzzy.filter(repositoryName, names).map(match => match.original);
+        return fuzzy.filter(repositoryName, names).map((match) => match.original);
       });
   }
 }

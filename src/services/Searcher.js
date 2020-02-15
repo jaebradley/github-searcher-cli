@@ -1,10 +1,10 @@
-import GitHub from 'github';
+import { Octokit } from '@octokit/rest';
 
 import { buildSearchQuery } from './SearchQueryBuilder';
 
 class Searcher {
   constructor(accessToken) {
-    this.client = GitHub({ headers: { Accept: 'application/vnd.github.v3.text-match+json' } });
+    this.client = new Octokit({ headers: { Accept: 'application/vnd.github.v3.text-match+json' } });
     this.client.authenticate({
       type: 'token',
       token: accessToken,

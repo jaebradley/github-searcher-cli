@@ -23,7 +23,7 @@ class IssueSearchResultSelector {
         message: 'Choose issue',
         type: 'autocomplete',
         source: (answersSoFar, input) => (
-          Promise.resolve(fuzzy.filter(input || '', this.matches).map(match => match.original))
+          Promise.resolve(fuzzy.filter(input || '', this.matches).map((match) => match.original))
         ),
         pageSize: 50,
       },

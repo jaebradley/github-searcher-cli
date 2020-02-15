@@ -75,31 +75,31 @@ class IssueFormatter {
   static getCommentLevelEmoji(commentCount) {
     if (commentCount < 5) {
       return '😀';
-    } else if (commentCount < 10) {
+    } if (commentCount < 10) {
       return '🤞';
-    } else if (commentCount < 15) {
+    } if (commentCount < 15) {
       return '🚧';
-    } else if (commentCount < 20) {
+    } if (commentCount < 20) {
       return '🤔';
-    } else if (commentCount < 25) {
+    } if (commentCount < 25) {
       return '🚑';
-    } else if (commentCount < 30) {
+    } if (commentCount < 30) {
       return '😒';
-    } else if (commentCount < 35) {
+    } if (commentCount < 35) {
       return '🌋';
-    } else if (commentCount < 40) {
+    } if (commentCount < 40) {
       return '😩';
-    } else if (commentCount < 45) {
+    } if (commentCount < 45) {
       return '📈';
-    } else if (commentCount < 50) {
+    } if (commentCount < 50) {
       return '🖕';
-    } else if (commentCount < 55) {
+    } if (commentCount < 55) {
       return '💩';
-    } else if (commentCount < 60) {
+    } if (commentCount < 60) {
       return '😡';
-    } else if (commentCount < 65) {
+    } if (commentCount < 65) {
       return '💔';
-    } else if (commentCount < 70) {
+    } if (commentCount < 70) {
       return '😱';
     }
     return '💣 ';
@@ -110,7 +110,7 @@ class IssueFormatter {
       return '';
     }
 
-    const formattedLabels = labels.map(label => IssueFormatter.formatLabel(label));
+    const formattedLabels = labels.map((label) => IssueFormatter.formatLabel(label));
     return `🏷  ${formattedLabels.join(' ')}`;
   }
 

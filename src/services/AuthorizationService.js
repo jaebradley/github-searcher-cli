@@ -1,10 +1,10 @@
-import GitHub from 'github';
+import { Octokit } from '@octokit/rest';
 
 class AuthorizationService {
   constructor(username, password) {
     this.username = username;
     this.password = password;
-    this.client = new GitHub();
+    this.client = new Octokit();
     this.client.authenticate({
       type: 'basic',
       username: this.username,

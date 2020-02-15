@@ -1,9 +1,9 @@
-import GitHub from 'github';
+import { Octokit } from '@octokit/rest';
 import * as SearchQueryBuilder from './SearchQueryBuilder';
 
 import Searcher from './Searcher';
 
-jest.mock('github');
+jest.mock('@octokit/rest');
 jest.mock('./SearchQueryBuilder');
 
 describe('Searcher', () => {
@@ -20,7 +20,7 @@ describe('Searcher', () => {
   mockSearchCode.mockReturnValue('code');
   mockSearchRepositories.mockReturnValue('repositories');
 
-  GitHub.mockImplementation(() => ({
+  Octokit.mockImplementation(() => ({
     authenticate: mockAuthenticate,
     search: {
       issues: mockSearchIssues,
@@ -33,7 +33,7 @@ describe('Searcher', () => {
   SearchQueryBuilder.buildSearchQuery.mockReturnValue(searchQuery);
 
   const clearMocks = () => {
-    GitHub.mockClear();
+    Octokit.mockClear();
     mockAuthenticate.mockClear();
     mockSearchIssues.mockClear();
     mockSearchCode.mockClear();
@@ -49,8 +49,8 @@ describe('Searcher', () => {
     it('should create an instance', () => {
       const searcher = new Searcher(accessToken);
       expect(searcher).toBeDefined();
-      expect(GitHub).toHaveBeenCalledTimes(1);
-      expect(GitHub).toHaveBeenCalledWith({ headers: { Accept: 'application/vnd.github.v3.text-match+json' } });
+      expect(Octokit).toHaveBeenCalledTimes(1);
+      expect(Octokit).toHaveBeenCalledWith({ headers: { Accept: 'application/vnd.github.v3.text-match+json' } });
       expect(mockAuthenticate).toHaveBeenCalledTimes(1);
       expect(mockAuthenticate).toHaveBeenCalledWith({ type: 'token', token: accessToken });
     });

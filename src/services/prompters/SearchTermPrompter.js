@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
 
-const isValidSearchTerm = searchTerm => !!searchTerm && searchTerm.length > 0;
+const isValidSearchTerm = (searchTerm) => !!searchTerm && searchTerm.length > 0;
 
 const promptSearchTerm = async () => (
   inquirer.prompt([

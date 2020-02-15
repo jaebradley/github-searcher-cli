@@ -2,7 +2,7 @@ import { TwoFactorAuthenticationRequiredErrorMessage } from '../../data/constant
 import { promptTwoFactorAuthenticationCode } from '../prompters/TwoFactorAuthenticationCodePrompter';
 import { InputTwoFactorAuthentication } from '../../data/constants/setup/Message';
 
-const isTwoFactorAuthenticationError = error => (
+const isTwoFactorAuthenticationError = (error) => (
   !!error
     && !!error.message
     && JSON.parse(error.message).message === TwoFactorAuthenticationRequiredErrorMessage

@@ -7,7 +7,7 @@ import {
   Involved,
 } from '../../data/constants/github/issue/UserActions';
 
-const isValidUsername = answersSoFar => !!answersSoFar
+const isValidUsername = (answersSoFar) => !!answersSoFar
   && !!answersSoFar.username
   && answersSoFar.username.length;
 
