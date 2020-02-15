@@ -25,7 +25,7 @@ class MatchingFilesSelector {
         type: 'autocomplete',
         paginated: false,
         source: (answersSoFar, input) => (
-          Promise.resolve(fuzzy.filter(input || '', this.matches).map(match => match.original))
+          Promise.resolve(fuzzy.filter(input || '', this.matches).map((match) => match.original))
         ),
         pageSize: 50,
       },

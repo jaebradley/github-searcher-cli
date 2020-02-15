@@ -40,7 +40,7 @@ class PullRequestSearchPrompter {
         message: 'Select an option',
         type: 'autocomplete',
         source: (answersSoFar, input) => (
-          Promise.resolve(fuzzy.filter(input || '', OPTIONS).map(match => match.original))
+          Promise.resolve(fuzzy.filter(input || '', OPTIONS).map((match) => match.original))
         ),
       },
     ]);

@@ -7,8 +7,8 @@ import {
   TextFormat,
 } from 'textstyler';
 
-const getStyledRanges = ranges => ranges
-  .map(range => new StyledRange(range, new TextStyle(TextColor.RED, null, TextFormat.BOLD)));
+const getStyledRanges = (ranges) => ranges
+  .map((range) => new StyledRange(range, new TextStyle(TextColor.RED, null, TextFormat.BOLD)));
 
 const styleFragmentText = (fragment) => {
   const { matchingRanges, text } = fragment;

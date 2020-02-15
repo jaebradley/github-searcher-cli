@@ -1,6 +1,6 @@
 import GitHubDataStorer from '../GitHubDataStorer';
 import Searcher from '../Searcher';
-import executeSetup from '../../services/setup/executeSetup';
+import executeSetup from '../setup/executeSetup';
 import { selectCodeQuery } from '../QuerySelector';
 import { parseResults } from './MatchingFragmentResultsParser';
 import MatchingFilesSelector from './MatchingFilesSelector';

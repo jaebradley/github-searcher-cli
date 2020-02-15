@@ -1,8 +1,8 @@
 import inquirer from 'inquirer';
 
-const validateAuthenticationCode = code => !!code && code.length > 0;
+const validateAuthenticationCode = (code) => !!code && code.length > 0;
 
-const promptTwoFactorAuthenticationCode = async message => (
+const promptTwoFactorAuthenticationCode = async (message) => (
   inquirer.prompt([
     {
       name: 'twoFactorAuthenticationCode',

@@ -20,7 +20,7 @@ const choices = [
 
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
 
-const filterReviewStatuses = (answersSoFar, input) => Promise.resolve(fuzzy.filter(input || '', choices).map(match => match.original));
+const filterReviewStatuses = (answersSoFar, input) => Promise.resolve(fuzzy.filter(input || '', choices).map((match) => match.original));
 
 const selectReviewStatus = async () => (
   inquirer.prompt([

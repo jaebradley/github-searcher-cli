@@ -6,8 +6,8 @@ import GitHubLanguages from '../../data/constants/github/Languages';
 
 inquirer.registerPrompt('autocomplete', InquirerAutocompletePrompt);
 
-const findMatches = searchTerm => (
-  fuzzy.filter(searchTerm, GitHubLanguages).map(match => match.original)
+const findMatches = (searchTerm) => (
+  fuzzy.filter(searchTerm, GitHubLanguages).map((match) => match.original)
 );
 
 const applyFiltering = (answersSoFar, input) => (Promise.resolve(findMatches(input || '')));
